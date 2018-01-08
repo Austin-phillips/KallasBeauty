@@ -13,6 +13,7 @@ gem 'puma', '~> 3.7'
 gem 'omniauth'
 gem 'devise'
 gem 'devise_token_auth'
+gem 'cloudinary'
 
 group :development, :test do
 gem 'pry'
