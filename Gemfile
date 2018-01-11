@@ -14,6 +14,7 @@ gem 'omniauth'
 gem 'devise'
 gem 'devise_token_auth'
 gem 'cloudinary'
+gem 'foreman'
 
 group :development, :test do
 gem 'pry'

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Menu } from 'semantic-ui-react';
+import { Dropdown, Menu} from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleLogout } from '../actions/auth';
 
 class NavBar extends Component {
+
   rightNavs = () => {
     const { user, dispatch, history } = this.props;
 
@@ -20,12 +21,16 @@ class NavBar extends Component {
     }
     return (
       <Menu.Menu position='right'>
-        <Link to='/register'>
-          <Menu.Item name='Register' />
-        </Link>
-        <Link to='/login'>
-          <Menu.Item name='Login' />
-        </Link>
+        <Dropdown icon='user' item>
+        <Dropdown.Menu>
+            <Dropdown.Item>
+              <Link to='/login'>Login</Link>
+            </Dropdown.Item>
+            <Dropdown.Item>
+              <Link to='/register'>Register</Link>
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       </Menu.Menu>
     );
   }
@@ -36,6 +41,15 @@ class NavBar extends Component {
         <Menu pointing secondary>
           <Link to='/'>
             <Menu.Item name='home' />
+          </Link>
+          <Link to='/gallery'>
+            <Menu.Item name='Gallery' />
+          </Link>
+          <Link to='/services'>
+            <Menu.Item name='Services' />
+          </Link>
+          <Link to='/appointments'>
+            <Menu.Item name='Book Appointment' />
           </Link>
           { this.rightNavs() }
         </Menu>
