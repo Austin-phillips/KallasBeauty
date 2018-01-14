@@ -33,7 +33,7 @@ class Api::ServicesController < ApplicationController
   private
 
   def set_service
-    @service = App.find(params[:id])
+    @service = Service.find(params[:id])
   end 
 
   def service_params

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Dropdown, Menu} from 'semantic-ui-react';
+import { Menu} from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleLogout } from '../actions/auth';
@@ -21,16 +21,9 @@ class NavBar extends Component {
     }
     return (
       <Menu.Menu position='right'>
-        <Dropdown icon='user' item>
-        <Dropdown.Menu>
-            <Dropdown.Item>
-              <Link to='/login'>Login</Link>
-            </Dropdown.Item>
-            <Dropdown.Item>
-              <Link to='/register'>Register</Link>
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+        <Link to='/login'>
+          <Menu.Item icon='user circle' name='Login' />
+        </Link>
       </Menu.Menu>
     );
   }

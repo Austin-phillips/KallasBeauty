@@ -1,21 +1,28 @@
-import React, { Component } from 'react';
-import { Header, Button } from 'semantic-ui-react';
+// import React, { Component } from 'react';
+// import { Button } from 'semantic-ui-react';
+// import { deleteService } from '../actions/service';
+// import { connect } from 'react-redux';
 
-class DeleteService extends Component {
+// class DeleteService extends Component {
 
-  handleDelete = () => {
-    console.log('Delete button clicked')
-  }
-  render() {
-    return (
-      <div>
-        <Button 
-          color='red'
-          onClick={() => this.handleDelete()} 
-        >Delete</Button>
-      </div>
-    );
-  }
-}
+//   handleDelete = () => {
+//     this.props.dispatch(deleteService(this.props.services.id))
+//   }
+//   render() {
+//     const { id } = this.props.services;
+//     return (
+//       <div>
+//         <Button 
+//           color='red'
+//           onClick={() => this.handleDelete(id)} 
+//         >Delete</Button>
+//       </div>
+//     );
+//   }
+// }
 
-export default DeleteService;
+// const mapStateToProps = (state) => {
+//   return { services: state.services}
+// }
+
+// export default connect(mapStateToProps)(DeleteService);
