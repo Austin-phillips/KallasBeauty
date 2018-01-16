@@ -1,29 +1,73 @@
 import React, { Component } from 'react';
 import { Button, Modal, Form, Input, Segment } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { getSingleService } from '../actions/service';
+import { addService } from '../actions/service';
 
 class NewService extends Component {
-  state = { name: '', price: '', time: '', description: '' }
+  state = { name: '', price: '', time: '', description: '', modalOpen: false }
+
+  handleOpen = () => this.setState({ modalOpen: true })
+
+  handleClose = () => this.setState({ modalOpen: false })
+
+  handleChange = (e, { name, value }) => this.setState({ [name]: value })
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { dispatch } = this.props;
+    const { name, price, time, description } = this.state;
+    dispatch(addService({ name, price, time, description }));
+    this.setState({ modalOpen: false })
+  }
 
   render() {
     return (
       <div>
-        <Modal trigger={<Button color='green'>Create New Service</Button>}>
-          <Modal.Header>Add Service</Modal.Header>
-          <Segment basic>
-            <Form>
+        <Modal
+          trigger={<Button color='green' onClick={this.handleOpen}>Create New Service</Button>}
+          open={this.state.modalOpen}
+          onClose={this.handleClose}
+        >
+          <Modal.Header>Create New Service</Modal.Header>
+          <Segment>
+            <Form onSubmit={this.handleSubmit}>
               <Form.Group widths='equal'>
-                <Form.Field control={Input} label='Service' placeholder='Name' />
+                <Form.Input
+                  label='Name'
+                  name='name'
+                  placeholder=' example: Microblading'
+                  autoFocus={true}
+                  required
+                  onChange={this.handleChange}
+                />
               </Form.Group>
               <Form.Group widths='equal'>
-                <Form.Field control={Input} label='Price' placeholder='0.00' />
-                <Form.Field control={Input} label='Appointment length' placeholder='Minutes' />
+                <Form.Input
+                  label='Price'
+                  name='price'
+                  placeholder='00.00'
+                  required
+                  onChange={this.handleChange}
+                />
+                <Form.Input
+                  label='Time'
+                  name='time'
+                  placeholder='Minutes'
+                  required
+                  onChange={this.handleChange}
+                />
               </Form.Group>
               <Form.Group widths='equal'>
-                <Form.Field control={Input} label='Service description' placeholder='Description' />
+                <Form.Input
+                  label='Description'
+                  name='description'
+                  placeholder='Description'
+                  required
+                  onChange={this.handleChange}
+                />
               </Form.Group>
-              <Form.Field color='green' control={Button}>Submit</Form.Field>
+              <Button color='green' type='submit'>Create</Button>
+              <Button color='red' onClick={() => this.handleClose()}>Cancel</Button>
             </Form>
           </Segment>
         </Modal>
@@ -32,7 +76,5 @@ class NewService extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return { service: state.service }
-}
-export default connect(mapStateToProps)(NewService);
+
+export default connect()(NewService);

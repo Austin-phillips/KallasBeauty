@@ -18,16 +18,16 @@ export const getServices = () => {
   }
 }
 
-export const getSingleService = (id) => {
+export const updateService = (service, id, history) => {
   return (dispatch) => {
-    axios.get(`/api/services/${id}`)
-    .then( res => {
-      dispatch({ type: 'GET_SERVICE', service: res.data, headers: res.headers })
-    })
-    .catch( err => {
-      dispatch(setFlash('Failed to update Service', 'red'))
-      dispatch(setHeaders(err.headers))
-    });
+    axios.put(`/api/services/${id}`, { service })
+      .then(res => {
+        dispatch({ type: 'UPDATE_SERVICE', service: res.data, headers: res.headers })
+      })
+      .catch(err => {
+        dispatch(setFlash('Failed to update service', 'red'))
+        dispatch(setHeaders(err.headers))
+      })
   }
 }
 
@@ -42,5 +42,18 @@ export const deleteService = (id) => {
         dispatch(setFlash('Error Deleting Service. Try Again,', 'red'));
         dispatch(setHeaders(err.headers));
       });
+  }
+}
+
+export const addService = (service) => {
+  return (dispatch) => {
+    axios.post(`/api/services`, { service })
+      .then(res => {
+        dispatch({ type: 'ADD_SERVICE', service: res.data, headers: res.headers })
+      })
+      .catch(err => {
+        dispatch(setFlash('Failed to add service', 'red'))
+        dispatch(setHeaders(err.headers))
+      })
   }
 }

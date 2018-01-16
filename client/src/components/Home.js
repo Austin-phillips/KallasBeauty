@@ -5,7 +5,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Header as='h1' textAlign='center'>Kallas Beauty</Header>
+        <Header as='h1' textAlign='center'>Bliss Beauty</Header>
       </div>
     );
   }

@@ -2,7 +2,7 @@ class Api::ServicesController < ApplicationController
   before_action :set_service, only: [ :show, :update, :destroy ]
 
   def index
-    render json: Service.all
+    render json: Service.all.order(created_at: :desc)
   end
 
   def show
@@ -37,7 +37,7 @@ class Api::ServicesController < ApplicationController
   end 
 
   def service_params
-    params.require(:service).permit( :name, :price, :description, :time)
+    params.require(:service).permit( :name, :price, :description, :time )
   end 
 
 end
