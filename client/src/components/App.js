@@ -12,7 +12,6 @@ import Gallery from './Gallery';
 import Services from './Services';
 import Appointments from './Appointments';
 import SingleService from './SingleService';
-import { Button, } from 'semantic-ui-react';
 
 class App extends Component {
 

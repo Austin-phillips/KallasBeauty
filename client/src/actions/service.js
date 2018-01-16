@@ -35,7 +35,6 @@ export const deleteService = (id) => {
   return (dispatch) => {
     axios.delete(`/api/services/${id}`)
       .then(res => {
-        const { data: headers } = res;
         dispatch({ type: 'DELETE_SERVICE', id, headers: res.headers });
       })
       .catch(err => {

@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import { getServices, deleteService } from '../actions/service';
 import EditService from './EditService';
 import NewService from './NewService';
-import { setFlash } from '../actions/flash';
-import axios from 'axios';
 
 class AdminServices extends Component {
   state = { editing: false }
@@ -20,7 +18,6 @@ class AdminServices extends Component {
   }
 
   displayServices = () => {
-    const { editing } = this.state;
     const { services } = this.props;
     return services.map(service => {
       return (

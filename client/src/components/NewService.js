@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Modal, Form, Input, Segment } from 'semantic-ui-react';
+import { Button, Modal, Form, Segment } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { addService } from '../actions/service';
 

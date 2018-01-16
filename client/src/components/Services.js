@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Grid, Card, Segment, Divider, Button } from 'semantic-ui-react';
+import { Header, Grid, Card, Segment } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { getServices } from '../actions/service';
 import AdminServices from './AdminServices';
