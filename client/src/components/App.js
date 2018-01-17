@@ -11,7 +11,6 @@ import { Switch, Route } from 'react-router-dom';
 import Gallery from './Gallery';
 import Services from './Services';
 import Appointments from './Appointments';
-import SingleService from './SingleService';
 
 class App extends Component {
 
@@ -26,7 +25,6 @@ class App extends Component {
             <Route exact path='/gallery' component={Gallery} />
             <Route exact path='/services' component={Services} />
             <Route exact path='/appointments' component={Appointments} />
-            <Route exact path='/service' component={SingleService} />
             <AuthRoute exact path='/login' component={Login} />
             <AuthRoute exact path='/register' component={Register} />
             <Route component={NoMatch} />

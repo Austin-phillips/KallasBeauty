@@ -13,8 +13,9 @@ class AdminServices extends Component {
   }
 
   deleteService = (id) => {
-    window.confirm('Are you sure you want to delete?')
-    this.props.dispatch(deleteService(id))
+    const deleted = window.confirm('Are you sure you want to delete?')
+    if(deleted)
+      this.props.dispatch(deleteService(id))
   }
 
   displayServices = () => {
