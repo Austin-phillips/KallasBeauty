@@ -32,7 +32,7 @@ class EditService extends Component {
     return (
       <div>
         <Modal 
-          trigger={<Button primary onClick={this.handleOpen}>Edit</Button>}
+          trigger={<Button icon='edit' content='Edit' primary onClick={this.handleOpen}></Button>}
           open={this.state.modalOpen}
           onClose={this.handleClose}
         >

@@ -1,0 +1,5 @@
+class AddPublicIdToImages < ActiveRecord::Migration[5.1]
+  def change
+    add_column :images, :publicId, :string
+  end
+end

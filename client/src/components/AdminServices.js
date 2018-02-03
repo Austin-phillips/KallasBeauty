@@ -25,10 +25,10 @@ class AdminServices extends Component {
         <Grid.Column
           key={service.id}
           computer={12}
-          tablet={6}
+          tablet={12}
           phone={12}
         >
-          <Card centered raised fluid style={box} key={service.id} >
+          <Card centered raised fluid style={style.box} key={service.id} >
             <Card.Content>
               <Card.Header>{service.name}</Card.Header>
               <Card.Meta> ${service.price}</Card.Meta>
@@ -38,7 +38,7 @@ class AdminServices extends Component {
               <Button.Group>
                 <EditService service={service} />
                 <Button.Or />
-                <Button color='red' onClick={() => this.deleteService(service.id)}>Delete</Button>
+                <Button icon='trash' content='Delete' color='red' onClick={() => this.deleteService(service.id)}></Button>
               </Button.Group>
             </Card.Content>
           </Card>
@@ -49,11 +49,9 @@ class AdminServices extends Component {
   render() {
     return (
       <div>
-        <Segment textAlign='center'>
+        <Segment basic inverted textAlign='center'>
           <Header as='h1' textAlign='center'>Services</Header>
           <NewService />
-        </Segment>
-        <Segment basic inverted>
         <Grid columns={12}>
           <Grid.Row centered>
             {this.displayServices()}
@@ -69,8 +67,10 @@ const mapStateToProps = (state) => {
   return { services: state.services, user: state.user }
 }
 
-const box = {
-  margin: '4px',
+const style = {
+  box: {
+    margin:'4px',
+  },
 }
 
 export default connect(mapStateToProps)(AdminServices);

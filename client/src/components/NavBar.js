@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu} from 'semantic-ui-react';
+import { Menu } from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleLogout } from '../actions/auth';
@@ -54,5 +54,6 @@ class NavBar extends Component {
 const mapStateToProps = state => {
   return { user: state.user };
 };
+
 
 export default withRouter(connect(mapStateToProps)(NavBar));

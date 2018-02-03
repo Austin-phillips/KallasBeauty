@@ -17,7 +17,7 @@ class Services extends Component {
         <Grid.Column
           key={service.id}
           computer={12}
-          tablet={6}
+          tablet={12}
           phone={12}
         >
           <Card centered raised fluid style={box} >

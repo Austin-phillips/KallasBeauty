@@ -2,20 +2,26 @@ import React, { Component } from 'react';
 import { Header, Segment, Button, Divider, Grid, Loader, Dimmer } from 'semantic-ui-react';
 import Dropzone from 'react-dropzone';
 import { connect } from 'react-redux';
-import { fetchImages, handleUpload } from '../actions/images';
+import { fetchImages, handleUpload, deleteImage } from '../actions/images';
 import { Image, Transformation } from 'cloudinary-react';
-import AdminGallery from './AdminGallery';
+import NewImage from './NewImage';
+import SingleImage from './SingleImage';
 
-class Gallery extends Component {
-  state = { fileUploading: false }
+class AdminGallery extends Component {
 
-  componentDidMount() { 
+  componentDidMount() {
     this.props.dispatch(fetchImages())
   }
 
+  deleteImage = (id) => {
+    const deleted = window.confirm('Are you sure you want to delete?')
+    if (deleted)
+      this.props.dispatch(deleteImage(id))
+  }
+
   displayImages = () => {
-    return this.props.images.map( image => {
-      return(
+    return this.props.images.map(image => {
+      return (
         <Grid.Column width={4} key={image.id}>
           <Image
             cloudName='kallasbeauty'
@@ -24,34 +30,33 @@ class Gallery extends Component {
             width="auto"
             crop="scale"
             publicId={image.publicId}
-            >
+          >
           </Image>
+          <Button color='red' size='tiny' icon='trash' onClick={() => this.deleteImage(image.id)}></Button>
         </Grid.Column>
       )
     })
   }
 
   render() {
-    if(this.props.user.admin === true)
-      return (
-        <AdminGallery />
-      )
-    else
-      return (
+    return (
+      <Segment basic>
+        <Header as='h2' textAlign='center'>Gallery</Header>
+        <NewImage />
         <Segment basic>
-          <Header as='h2' textAlign='center'>Gallery</Header>
           <Grid>
             <Grid.Row>
               {this.displayImages()}
             </Grid.Row>
           </Grid>
         </Segment>
-      );
+      </Segment>
+    );
   }
 }
 
 const mapStateToProps = (state) => {
-  return { images: state.images, user: state.user }
+  return { images: state.images }
 }
 
-export default connect(mapStateToProps)(Gallery);
+export default connect(mapStateToProps)(AdminGallery);

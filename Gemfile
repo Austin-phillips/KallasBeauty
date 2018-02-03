@@ -16,8 +16,9 @@ gem 'devise_token_auth'
 gem 'cloudinary'
 
 group :development, :test do
-gem 'pry'
-gem 'faker'
+  gem 'pry'
+  gem 'faker'
+  gem 'dotenv-rails'
 end
 
 group :development do

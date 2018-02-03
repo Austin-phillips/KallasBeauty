@@ -11,6 +11,7 @@ import { Switch, Route } from 'react-router-dom';
 import Gallery from './Gallery';
 import Services from './Services';
 import Appointments from './Appointments';
+import Footer from './Footer';
 
 class App extends Component {
 
