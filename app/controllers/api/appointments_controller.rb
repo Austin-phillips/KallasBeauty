@@ -1,16 +1,16 @@
 class Api::AppointmentsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_appointment, except: [:index, :create]
 
   def index
-    @appointment = current_user.projects
+    render json: current_user.appointments.all
   end
 
   def show
   end
 
   def create
-    if @appointment.save(appointment_params)
+    @appointment = current_user.appointments.create(appointment_params)
+    if @appointment.save
       render json: @appointment
     else
       render json: @appointment.errors, status: :unprocessable_entity
@@ -31,7 +31,7 @@ class Api::AppointmentsController < ApplicationController
 
   private
     def appointment_params
-      params.require(:appointment).permit(:date, :time, :first_name, :last_name, :notes)
+      params.require(:appointment).permit(:date, :time, :first, :last, :notes, :service)
     end
 
     def set_appointment

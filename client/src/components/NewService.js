@@ -24,7 +24,13 @@ class NewService extends Component {
     return (
       <div>
         <Modal
-          trigger={<Button icon='plus' content='Add Service' color='green' onClick={this.handleOpen}></Button>}
+          trigger={<Button 
+                    style={{ marginBottom: '15px' }}
+                    icon='plus' 
+                    content='Add Service' 
+                    color='green' 
+                    onClick={this.handleOpen}>
+                  </Button>}
           open={this.state.modalOpen}
           onClose={this.handleClose}
         >

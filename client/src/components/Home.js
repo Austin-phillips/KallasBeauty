@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Segment } from 'semantic-ui-react';
+import { Header } from 'semantic-ui-react';
 import background from '../images/hair.png'
 
 class Home extends Component {

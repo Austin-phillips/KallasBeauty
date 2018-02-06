@@ -6,12 +6,12 @@ import Register from './Register';
 import Flash from './Flash';
 import Home from './Home';
 import AuthRoute from './AuthRoute';
+import ProtectedRoute from './ProtectedRoute';
 import FetchUser from './FetchUser';
 import { Switch, Route } from 'react-router-dom';
 import Gallery from './Gallery';
 import Services from './Services';
 import Appointments from './Appointments';
-import Footer from './Footer';
 
 class App extends Component {
 
@@ -25,7 +25,7 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             <Route exact path='/gallery' component={Gallery} />
             <Route exact path='/services' component={Services} />
-            <Route exact path='/appointments' component={Appointments} />
+            <ProtectedRoute exact path='/appointments' component={Appointments} />
             <AuthRoute exact path='/login' component={Login} />
             <AuthRoute exact path='/register' component={Register} />
             <Route component={NoMatch} />

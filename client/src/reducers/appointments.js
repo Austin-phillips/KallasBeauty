@@ -1,6 +1,6 @@
 const appointments = (state = [], action) => {
   switch (action.type) {
-    case 'GET_APPOINTMENT':
+    case 'SET_APPOINTMENTS':
       return action.appointments
     case 'ADD_APPOINTMENT':
       return [action.appointment, ...state]

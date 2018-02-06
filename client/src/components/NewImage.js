@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Header, Icon, Modal, Segment, Divider, Grid, Loader, Dimmer } from 'semantic-ui-react'
+import { Button, Header, Modal, Segment, Loader, Dimmer } from 'semantic-ui-react'
 import Dropzone from 'react-dropzone';
 import { connect } from 'react-redux';
 import { handleUpload } from '../actions/images';
@@ -34,12 +34,12 @@ class NewImage extends Component {
         <Segment basic>
           <Dropzone
             onDrop={this.onDrop}
-            style={{ width: '100%', height: '100px', border: '1px dashed black' }}
+            style={{ width: 'auto', height: '200px', border: '1px dashed black' }}
           >
             <Header as='h2' textAlign='center'>Click to Upload Photo</Header>
           </Dropzone>
           <Segment basic>
-            <Button onClick={() => this.handleClose()} color='green' floated='right'>Done</Button>
+            <Button style={{ marginBottom: '15px'}} onClick={() => this.handleClose()} color='green' floated='right'>Done</Button>
           </Segment>
         </Segment>
       )
@@ -48,7 +48,7 @@ class NewImage extends Component {
 
   render() {
     return(
-      <div>
+      <Segment basic>
         <Modal trigger={<Button icon='plus' content='Add Image' color='green' onClick={this.handleOpen}></Button>} 
           closeIcon
           open={this.state.modalOpen}
@@ -59,7 +59,7 @@ class NewImage extends Component {
             {this.uploadDisplay()}
           </Segment>
         </Modal>
-      </div>
+      </Segment>
     )
   }
 }

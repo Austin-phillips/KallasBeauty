@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Header, Segment, Button, Divider, Grid, Loader, Dimmer } from 'semantic-ui-react';
-import Dropzone from 'react-dropzone';
+import { Header, Segment, Button, Divider, Grid } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { fetchImages, handleUpload, deleteImage } from '../actions/images';
-import { Image, Transformation } from 'cloudinary-react';
+import { fetchImages, deleteImage } from '../actions/images';
+import { Image } from 'cloudinary-react';
 import NewImage from './NewImage';
-import SingleImage from './SingleImage';
 
 class AdminGallery extends Component {
 
@@ -30,9 +28,10 @@ class AdminGallery extends Component {
             width="auto"
             crop="scale"
             publicId={image.publicId}
+            border="3px_solid_black"
           >
           </Image>
-          <Button color='red' size='tiny' icon='trash' onClick={() => this.deleteImage(image.id)}></Button>
+          <Button floated='left' color='red' size='tiny' icon='trash' onClick={() => this.deleteImage(image.id)}></Button>
         </Grid.Column>
       )
     })
@@ -40,9 +39,10 @@ class AdminGallery extends Component {
 
   render() {
     return (
-      <Segment basic>
-        <Header as='h2' textAlign='center'>Gallery</Header>
+      <Segment basic textAlign='center'>
+        <Header as='h1'>Gallery</Header>
         <NewImage />
+        <Divider section />
         <Segment basic>
           <Grid>
             <Grid.Row>

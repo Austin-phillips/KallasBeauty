@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Grid, Card, Segment } from 'semantic-ui-react';
+import { Header, Grid, Card, Segment, Divider } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { getServices } from '../actions/service';
 import AdminServices from './AdminServices';
@@ -41,15 +41,14 @@ class Services extends Component {
     else 
     return (
       <div>
-        <Segment>
-          <Header as='h1' textAlign='center'>Services</Header>
-        </Segment>
-        <Segment basic inverted>
-        <Grid columns={12}>
-          <Grid.Row centered>
-            {this.displayServices()}
-          </Grid.Row>
-        </Grid>
+        <Segment basic inverted textAlign='center'>
+          <Header as='h1' textAlign='center' style={{ marginBottom: '20px'}}>Services</Header>
+          <Divider section />
+          <Grid columns={12}>
+            <Grid.Row centered>
+              {this.displayServices()}
+            </Grid.Row>
+          </Grid>
         </Segment>
       </div>
     )

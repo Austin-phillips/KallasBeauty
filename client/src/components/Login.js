@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Header, Segment, Form, Button, Card } from 'semantic-ui-react';
+import { Header, Segment, Form, Button, Card, Divider } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { handleLogin } from '../actions/auth';
 import background from '../images/hair.png'
+import { Link, withRouter } from 'react-router-dom';
 
 
 class Login extends Component {
@@ -27,7 +28,7 @@ class Login extends Component {
         <Card centered raised style={styles.card}>
           <Header as='h1' textAlign='center'>Login</Header>
           <Form onSubmit={this.handleSubmit}>
-            <Form.Field>
+            <Form.Field >
               <label htmlFor='email'>Email</label>
               <input
                 required
@@ -49,9 +50,13 @@ class Login extends Component {
               />
             </Form.Field>
             <Segment textAlign='center' basic>
-              <Button primary type='submit'>Submit</Button>
+              <Button primary type='submit'>Login</Button>
             </Segment>
           </Form>
+          <Divider horizontal>Or</Divider>
+          <Segment basic textAlign='center'>
+            <Link to='register'>New User?</Link>
+          </Segment>
         </Card>
       </div>
     );
@@ -74,4 +79,4 @@ const styles = {
     padding: '0',
   },
 }
-export default connect()(Login);
+export default withRouter(connect()(Login));

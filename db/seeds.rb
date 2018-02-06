@@ -34,5 +34,10 @@
       admin: true
     )
 
+    User.create(
+      email: 'test@user.com',
+      password: 'password',
+    )
+
     puts 'Services created'
     puts 'Admin created'
