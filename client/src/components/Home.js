@@ -3,6 +3,7 @@ import { Header } from 'semantic-ui-react';
 import background from '../images/hair.png'
 
 class Home extends Component {
+
   render() {
     return (
       <div style={styles.backgroundImage}>

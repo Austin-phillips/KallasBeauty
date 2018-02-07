@@ -59,7 +59,7 @@ export const handleLogin = (email, password, history) => {
         const { data: { data: user }, headers } = res;
         dispatch(setHeaders(headers));
         dispatch(login(user));
-        history.push('/');
+        history.push('/appointments');
       })
       .catch(res => {
         const messages =

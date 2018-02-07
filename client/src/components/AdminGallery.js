@@ -43,7 +43,7 @@ class AdminGallery extends Component {
         <Header as='h1'>Gallery</Header>
         <NewImage />
         <Divider section />
-        <Segment basic>
+        <Segment>
           <Grid>
             <Grid.Row>
               {this.displayImages()}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Modal, Form, Segment } from 'semantic-ui-react';
+import { Button, Modal, Form, Segment, Divider } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { addAppointment } from '../actions/appointment';
 import { getServices } from '../actions/service';
@@ -13,6 +13,7 @@ class NewAppointment extends Component {
     time: '', 
     service: '', 
     notes: '', 
+    price: '',
     modalOpen: false }
 
   componentDidMount() {
@@ -22,7 +23,7 @@ class NewAppointment extends Component {
   options = () => {
     return this.props.services.map( service => {
       return( 
-        { key: `${service.id}`, text: `${service.name}`, value: `${service.name}`}
+        { key: `${service.id}`, text: `${service.name}`, value: `${service.name}`, price: `${service.price}`}
       )
     })
   }
@@ -31,7 +32,7 @@ class NewAppointment extends Component {
 
   handleClose = () => this.setState({ modalOpen: false })
 
-  handleChange = (e, { name, value }) => this.setState({ [name]: value })
+  handleChange = (e, { name, value}) => this.setState({ [name]: value })
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -74,7 +75,17 @@ class NewAppointment extends Component {
                 />
               </Form.Group>
               <Form.Group widths='equal'>
-                <Form.Select onChange={this.handleChange} fluid name='service' label='Service' options={this.options()} placeholder='Service' />
+                <Form.Select 
+                  onChange={this.handleChange}
+                  name='service'
+                  fluid 
+                  label='Service' 
+                  options={this.options()} 
+                  placeholder='Service' 
+                />
+                <Form.Field label='Price' placeholder='$20'/>
+              </Form.Group>
+              <Form.Group widths='equal'>
                 <Form.Input
                   label='Time'
                   name='time'
@@ -94,7 +105,6 @@ class NewAppointment extends Component {
                 <Form.Input
                   label='Notes'
                   name='notes'
-                  required
                   onChange={this.handleChange}
                 />
               </Form.Group>

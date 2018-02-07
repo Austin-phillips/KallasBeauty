@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
-import { Menu } from 'semantic-ui-react';
+import React, { Component } from 'react'
+import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Divider } from 'semantic-ui-react'
+import Flash from './Flash';
 import { Link, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { handleLogout } from '../actions/auth';
+import { connect } from 'react-redux';
+
+
 
 class NavBar extends Component {
 
@@ -11,49 +14,59 @@ class NavBar extends Component {
 
     if (user.id) {
       return (
-        <Menu.Menu position='right'>
-          <Menu.Item
-            name='Logout'
-            onClick={() => dispatch(handleLogout(history))}
-          />
-        </Menu.Menu>
+        <Menu.Item
+          icon='user circle' 
+          name='Logout'
+          onClick={() => dispatch(handleLogout(history))}
+        />
       );
     }
     return (
-      <Menu.Menu position='right'>
-        <Link to='/login'>
-          <Menu.Item icon='user circle' name='Login' />
-        </Link>
-      </Menu.Menu>
+      <Link to='/login'>
+        <Menu.Item icon='user circle' name='Login' />
+      </Link>
     );
   }
 
   render() {
+    const { children, visible } = this.props;
     return (
       <div>
-        <Menu pointing secondary>
-          <Link to='/'>
-            <Menu.Item name='home' />
-          </Link>
-          <Link to='/gallery'>
-            <Menu.Item name='Gallery' />
-          </Link>
-          <Link to='/services'>
-            <Menu.Item name='Services' />
-          </Link>
-          <Link to='/appointments'>
-            <Menu.Item name='Book Appointment' />
-          </Link>
-          { this.rightNavs() }
-        </Menu>
+        <Sidebar.Pushable as={Segment}>
+          <Sidebar as={Menu} animation='push' width='thin' visible={visible} icon='labeled' vertical inverted>
+            {this.rightNavs()}
+            <Divider section />
+            <Link to='/'>
+              <Menu.Item name='home' />
+            </Link>
+            <Divider section />
+            <Link to='/gallery'>
+              <Menu.Item name='Gallery' />
+            </Link>
+            <Divider section />
+            <Link to='/services'>
+              <Menu.Item name='Services' />
+            </Link>
+            <Divider section />
+            <Link to='/appointments'>
+              <Menu.Item name='Book Appointment' />
+            </Link>
+            <Divider section />
+          </Sidebar>
+          <Sidebar.Pusher>
+            <Segment basic style={{ padding: '0px'}}>
+              <Flash />
+              {children}
+            </Segment>
+          </Sidebar.Pusher>
+        </Sidebar.Pushable>
       </div>
-    );
+    )
   }
 }
 
 const mapStateToProps = state => {
   return { user: state.user };
 };
-
 
 export default withRouter(connect(mapStateToProps)(NavBar));

@@ -38,7 +38,7 @@ class Gallery extends Component {
       )
     else
       return (
-        <Segment basic>
+        <Segment basic style={{ height: '300'}}>
           <Header 
             as='h1' 
             textAlign='center'
@@ -47,7 +47,7 @@ class Gallery extends Component {
             Gallery
           </Header>
           <Divider section />
-          <Segment basic>
+          <Segment basic style={{ height: '300' }}>
             <Grid>
               <Grid.Row>
                 {this.displayImages()}

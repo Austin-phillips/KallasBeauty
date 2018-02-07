@@ -12,28 +12,54 @@ import { Switch, Route } from 'react-router-dom';
 import Gallery from './Gallery';
 import Services from './Services';
 import Appointments from './Appointments';
+import { Segment, Button, Menu, Sidebar, Icon } from 'semantic-ui-react';
 
 class App extends Component {
+  state = { visible: false }
+
+  toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
   render() {
+    const { visible } = this.state;
     return (
       <div>
-        <NavBar />
-        <Flash />
-        <FetchUser>
-          <Switch>
-            <Route exact path='/' component={Home} />
-            <Route exact path='/gallery' component={Gallery} />
-            <Route exact path='/services' component={Services} />
-            <ProtectedRoute exact path='/appointments' component={Appointments} />
-            <AuthRoute exact path='/login' component={Login} />
-            <AuthRoute exact path='/register' component={Register} />
-            <Route component={NoMatch} />
-          </Switch>
-        </FetchUser>
+      <Button 
+        basic 
+        size='large' 
+        onClick={this.toggleVisibility} 
+        icon='content' 
+        content='Menu'
+        style={styles.button}>
+        </Button>
+      <NavBar visible={visible}>
+      <FetchUser>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/gallery' component={Gallery} />
+          <Route exact path='/services' component={Services} />
+          <ProtectedRoute exact path='/appointments' component={Appointments} />
+          <AuthRoute exact path='/login' component={Login} />
+          <AuthRoute exact path='/register' component={Register} />
+          <Route component={NoMatch} />
+        </Switch>
+      </FetchUser>
+      </NavBar>
       </div>
     );
   }
 }
 
+const styles = {
+  button: {
+    position: 'fixed',
+    fontSize: '1.3em',
+    textAlign: 'center',
+    top: '0',
+    left: '0',
+    zIndex: '9999',
+    cursor: 'pointer',
+  }
+}
+
 export default App;
+

@@ -24,7 +24,7 @@ class Login extends Component {
   render() {
     const { email, password } = this.state;
     return (
-      <div style={styles.backgroundImage} textAlign='center'>
+      <div style={styles.backgroundImage}>
         <Card centered raised style={styles.card}>
           <Header as='h1' textAlign='center'>Login</Header>
           <Form onSubmit={this.handleSubmit}>

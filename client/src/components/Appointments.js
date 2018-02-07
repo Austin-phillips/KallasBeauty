@@ -11,23 +11,32 @@ class Appointments extends Component {
   }
 
   showAppointments = () => {
-      return(this.props.appointments.map( app => {
+    if (this.props.appointments.length === 0)
+    return(
+      <Table.Row>
+        <Table.Cell>No Appointments. Book one now</Table.Cell>
+      </Table.Row>
+    )
+    else 
+      return(
+      (this.props.appointments.map( app => {
         return(
           <Table.Row key={app.id}>
             <Table.Cell>{app.first} {app.last}</Table.Cell>
             <Table.Cell>{app.date}</Table.Cell>
             <Table.Cell>{app.time}</Table.Cell>
             <Table.Cell>{app.service}</Table.Cell>
-            <Table.Cell>{app.notes}</Table.Cell>
+            {app.notes === '' ? <Table.Cell>None</Table.Cell> : <Table.Cell>{app.notes}</Table.Cell>}
           </Table.Row>
         ) 
       })
     )
+  )
   }
 
   render() {
     return (
-      <Segment basic textAlign='center'>
+      <Segment basic textAlign='center' style={style.page}>
         <NewAppointment />
           <Table singleLine>
             <Table.Header>
@@ -45,6 +54,12 @@ class Appointments extends Component {
           </Table>
         </Segment>
     );
+  }
+}
+
+const style = {
+  page: {
+    height: '100% !important',
   }
 }
 
