@@ -36,7 +36,7 @@ class Appointments extends Component {
 
   render() {
     return (
-      <Segment basic textAlign='center' style={style.page}>
+      <Segment basic textAlign='center' style={{ height: '1000px'}}>
         <NewAppointment />
           <Table singleLine>
             <Table.Header>
@@ -54,12 +54,6 @@ class Appointments extends Component {
           </Table>
         </Segment>
     );
-  }
-}
-
-const style = {
-  page: {
-    height: '100% !important',
   }
 }
 

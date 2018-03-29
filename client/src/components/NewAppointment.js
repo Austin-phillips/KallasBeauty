@@ -14,6 +14,7 @@ class NewAppointment extends Component {
     service: '', 
     notes: '', 
     price: '',
+    email: this.props.user.email,
     modalOpen: false }
 
   componentDidMount() {
@@ -37,8 +38,8 @@ class NewAppointment extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { dispatch } = this.props;
-    const { first, last, date, time, service, notes } = this.state;
-    dispatch(addAppointment({ first, last, date, time, service, notes }));
+    const { first, last, date, time, service, notes, email } = this.state;
+    dispatch(addAppointment({ first, last, date, time, service, notes, email }));
     this.setState({ modalOpen: false })
   }
 
@@ -119,7 +120,7 @@ class NewAppointment extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { services: state.services}
+  return { services: state.services, user: state.user }
 }
 
 

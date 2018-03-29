@@ -20,7 +20,7 @@ class AdminGallery extends Component {
   displayImages = () => {
     return this.props.images.map(image => {
       return (
-        <Grid.Column width={4} key={image.id}>
+        <Grid.Column computer={3} tablet={4} phone={12} key={image.id}>
           <Image
             cloudName='kallasbeauty'
             dpr="auto"
@@ -39,17 +39,15 @@ class AdminGallery extends Component {
 
   render() {
     return (
-      <Segment basic textAlign='center'>
+      <Segment style={{ height: '1000px'}} basic textAlign='center'>
         <Header as='h1'>Gallery</Header>
         <NewImage />
         <Divider section />
-        <Segment>
-          <Grid>
-            <Grid.Row>
-              {this.displayImages()}
-            </Grid.Row>
-          </Grid>
-        </Segment>
+        <Grid columns={12}>
+          <Grid.Row>
+            {this.displayImages()}
+          </Grid.Row>
+        </Grid>
       </Segment>
     );
   }

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Header, Segment, Form, Button, Card, Divider } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { handleLogin } from '../actions/auth';
-import background from '../images/hair.png'
 import { Link, withRouter } from 'react-router-dom';
 
 
@@ -68,15 +67,6 @@ const styles = {
     height: '400px',
     width: '400px',
     marginTop: '100px'
-  },
-  backgroundImage: {
-    background: `url(${background}) no-repeat center center fixed`,
-    backgroundSize: 'cover',
-    position: 'relative',
-    overflow: 'hidden',
-    width: '100%',
-    height: '100vh',
-    padding: '0',
   },
 }
 export default withRouter(connect()(Login));

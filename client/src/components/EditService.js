@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import { updateService } from '../actions/service';
 
 class EditService extends Component {
-  state = { 
+  state = {
     name: this.props.service.name,
     price: this.props.service.price,
     time: this.props.service.time,
     description: this.props.service.description,
-    modalOpen: false 
+    modalOpen: false
   }
 
   handleOpen = () => this.setState({ modalOpen: true })
@@ -26,57 +26,57 @@ class EditService extends Component {
     this.setState({ modalOpen: false })
     this.forceUpdate()
   }
-  
+
   render() {
     const { name, price, time, description } = this.props.service;
     return (
       <div>
-        <Modal 
+        <Modal
           trigger={<Button icon='edit' content='Edit' primary onClick={this.handleOpen}></Button>}
           open={this.state.modalOpen}
           onClose={this.handleClose}
         >
           <Modal.Header>Edit Service</Modal.Header>
           <Segment>
-          <Form onSubmit={this.handleSubmit}>
-            <Form.Group widths='equal'>
-              <Form.Input 
-                label='Name'
-                name='name'
-                defaultValue={name}
-                autoFocus={true}
-                required
-                onChange={this.handleChange}
-              />
-            </Form.Group>
-            <Form.Group widths='equal'>
-              <Form.Input
-                label='Price'
-                name='price'
-                defaultValue={price}
-                required
-                onChange={this.handleChange}
-              />
-              <Form.Input
-                label='Time'
-                name='time'
-                defaultValue={time}
-                required
-                onChange={this.handleChange}
-              />
-            </Form.Group>
-            <Form.Group widths='equal'>
-              <Form.Input
-                label='Description'
-                name='description'
-                defaultValue={description}
-                required
-                onChange={this.handleChange}
-              />
-            </Form.Group>
+            <Form onSubmit={this.handleSubmit}>
+              <Form.Group widths='equal'>
+                <Form.Input
+                  label='Name'
+                  name='name'
+                  defaultValue={name}
+                  autoFocus={true}
+                  required
+                  onChange={this.handleChange}
+                />
+              </Form.Group>
+              <Form.Group widths='equal'>
+                <Form.Input
+                  label='Price'
+                  name='price'
+                  defaultValue={price}
+                  required
+                  onChange={this.handleChange}
+                />
+                <Form.Input
+                  label='Time'
+                  name='time'
+                  defaultValue={time}
+                  required
+                  onChange={this.handleChange}
+                />
+              </Form.Group>
+              <Form.Group widths='equal'>
+                <Form.Input
+                  label='Description'
+                  name='description'
+                  defaultValue={description}
+                  required
+                  onChange={this.handleChange}
+                />
+              </Form.Group>
               <Button color='green' type='submit'>Update</Button>
               <Button color='red' onClick={() => this.handleClose()}>Cancel</Button>
-          </Form>
+            </Form>
           </Segment>
         </Modal>
       </div>

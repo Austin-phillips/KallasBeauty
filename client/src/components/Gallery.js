@@ -15,7 +15,7 @@ class Gallery extends Component {
   displayImages = () => {
     return this.props.images.map( image => {
       return(
-        <Grid.Column width={4} key={image.id}>
+        <Grid.Column computer={3} tablet={4} phone={12} key={image.id}>
           <Image
             cloudName='kallasbeauty'
             dpr="auto"
@@ -38,7 +38,7 @@ class Gallery extends Component {
       )
     else
       return (
-        <Segment basic style={{ height: '300'}}>
+        <Segment basic style={{ height: '1000px'}}>
           <Header 
             as='h1' 
             textAlign='center'
@@ -47,13 +47,11 @@ class Gallery extends Component {
             Gallery
           </Header>
           <Divider section />
-          <Segment basic style={{ height: '300' }}>
-            <Grid>
-              <Grid.Row>
-                {this.displayImages()}
-              </Grid.Row>
-            </Grid>
-          </Segment>
+          <Grid columns={12}>
+            <Grid.Row>
+              {this.displayImages()}
+            </Grid.Row>
+          </Grid>
         </Segment>
       );
   }

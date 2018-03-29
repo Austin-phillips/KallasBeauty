@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :services
     resources :appointments
-    resources :images
+    resources :imagess
   end
 
   #Do not place any routes below this one

@@ -12,6 +12,7 @@ import { Switch, Route } from 'react-router-dom';
 import Gallery from './Gallery';
 import Services from './Services';
 import Appointments from './Appointments';
+import Schedule from './Schedule';
 import { Segment, Button, Menu, Sidebar, Icon } from 'semantic-ui-react';
 
 class App extends Component {
@@ -38,6 +39,7 @@ class App extends Component {
           <Route exact path='/gallery' component={Gallery} />
           <Route exact path='/services' component={Services} />
           <ProtectedRoute exact path='/appointments' component={Appointments} />
+          <ProtectedRoute exact path='/schedule' component={Schedule} />
           <AuthRoute exact path='/login' component={Login} />
           <AuthRoute exact path='/register' component={Register} />
           <Route component={NoMatch} />
@@ -51,7 +53,7 @@ class App extends Component {
 
 const styles = {
   button: {
-    position: 'fixed',
+    position: 'relative',
     fontSize: '1.3em',
     textAlign: 'center',
     top: '0',

@@ -28,6 +28,54 @@ class NavBar extends Component {
     );
   }
 
+  adminNavs = () => {
+    const { user } = this.props;
+    if(user.admin === true)
+      return(
+        <div>
+          <Divider section />
+          <Link to='/'>
+            <Menu.Item name='home' />
+          </Link>
+          <Divider section />
+          <Link to='/gallery'>
+            <Menu.Item name='Gallery' />
+          </Link>
+          <Divider section />
+          <Link to='/services'>
+            <Menu.Item name='Services' />
+          </Link>
+          <Divider section />
+          <Link to='/schedule'>
+            <Menu.Item name='Schedule' />
+          </Link>
+          <Divider section />
+        </div>
+      )
+    else 
+    return(
+      <div>
+        <Divider section />
+        <Link to='/'>
+          <Menu.Item name='home' />
+        </Link>
+        <Divider section />
+        <Link to='/gallery'>
+          <Menu.Item name='Gallery' />
+        </Link>
+        <Divider section />
+        <Link to='/services'>
+          <Menu.Item name='Services' />
+        </Link>
+        <Divider section />
+        <Link to='/appointments'>
+          <Menu.Item name='Book Appointment' />
+        </Link>
+        <Divider section />
+      </div>
+    )
+  }
+
   render() {
     const { children, visible } = this.props;
     return (
@@ -35,23 +83,7 @@ class NavBar extends Component {
         <Sidebar.Pushable as={Segment}>
           <Sidebar as={Menu} animation='push' width='thin' visible={visible} icon='labeled' vertical inverted>
             {this.rightNavs()}
-            <Divider section />
-            <Link to='/'>
-              <Menu.Item name='home' />
-            </Link>
-            <Divider section />
-            <Link to='/gallery'>
-              <Menu.Item name='Gallery' />
-            </Link>
-            <Divider section />
-            <Link to='/services'>
-              <Menu.Item name='Services' />
-            </Link>
-            <Divider section />
-            <Link to='/appointments'>
-              <Menu.Item name='Book Appointment' />
-            </Link>
-            <Divider section />
+            {this.adminNavs()}
           </Sidebar>
           <Sidebar.Pusher>
             <Segment basic style={{ padding: '0px'}}>
