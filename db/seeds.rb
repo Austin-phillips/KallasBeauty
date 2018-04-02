@@ -1,23 +1,8 @@
     @time = [ 30, 60, 90, 120 ]
-    @user_id = 0;
-    @date = [
-      '1-20-18',
-      '1-21-18',
-      '1-22-18',
-      '1-23-18',
-      '1-24-18',
-      '1-25-18',
-      '1-26-18',
-      '1-27-18'
-    ]
-    @time = [
-      '2:00',
-      '2:30',
-      '3:00',
-      '3:30',
-      '4:00',
-      '4:30'
-  ]
+    @time_slots = 11
+    @taken = [ true, false ]
+    @day_id = 0
+
 
     25.times do 
       Service.create(
@@ -35,9 +20,27 @@
     )
 
     User.create(
-      email: 'test@user.com',
+      email: 'phillips.austin51@gmail.com',
       password: 'password',
     )
 
+    1.times do
+      @day_id += 1
+      Day.create(
+        day: 'Monday',
+        date: '03-29-2018'
+      )
+      12.times do 
+        @time_slots = @time_slots + 1 
+        TimeSlot.create(
+          day_id: @day_id,
+          time: @time_slots,
+          taken: @taken.sample
+        )
+      end 
+    end 
+
     puts 'Services created'
     puts 'Admin created'
+    puts 'Schedule Created'
+

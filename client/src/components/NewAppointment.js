@@ -12,7 +12,6 @@ class NewAppointment extends Component {
     date: moment(), 
     time: '', 
     service: '', 
-    notes: '', 
     price: '',
     email: this.props.user.email,
     modalOpen: false }
@@ -38,8 +37,8 @@ class NewAppointment extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { dispatch } = this.props;
-    const { first, last, date, time, service, notes, email } = this.state;
-    dispatch(addAppointment({ first, last, date, time, service, notes, email }));
+    const { first, last, date, time, service, email } = this.state;
+    dispatch(addAppointment({ first, last, date, time, service, email }));
     this.setState({ modalOpen: false })
   }
 
@@ -99,13 +98,6 @@ class NewAppointment extends Component {
                   name='date'
                   placeholder='MM/DD/YYYY'
                   required
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-              <Form.Group widths='equal'>
-                <Form.Input
-                  label='Notes'
-                  name='notes'
                   onChange={this.handleChange}
                 />
               </Form.Group>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180327235137) do
+ActiveRecord::Schema.define(version: 20180330203256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,13 @@ ActiveRecord::Schema.define(version: 20180327235137) do
     t.index ["user_id"], name: "index_appointments_on_user_id"
   end
 
+  create_table "days", force: :cascade do |t|
+    t.string "day"
+    t.string "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "images", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -42,6 +49,15 @@ ActiveRecord::Schema.define(version: 20180327235137) do
     t.integer "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "time_slots", force: :cascade do |t|
+    t.integer "time"
+    t.boolean "taken", default: false
+    t.bigint "day_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["day_id"], name: "index_time_slots_on_day_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -75,4 +91,5 @@ ActiveRecord::Schema.define(version: 20180327235137) do
   end
 
   add_foreign_key "appointments", "users"
+  add_foreign_key "time_slots", "days"
 end

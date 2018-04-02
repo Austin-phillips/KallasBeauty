@@ -1,11 +1,16 @@
 class Api::AppointmentsController < ApplicationController
-  before_action :set_appointment, except: [:index, :create]
+  before_action :set_appointment, except: [:index, :create, :all_app, :show]
 
   def index
     render json: current_user.appointments.all
   end
 
+  def all_app
+    render json: Appointment.all.order(time: :asc)
+  end 
+
   def show
+    render json: Appointment.find(params[:id])
   end
 
   def create

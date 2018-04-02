@@ -10,7 +10,7 @@ export const getAppointments = () => {
         dispatch({ type: 'SET_APPOINTMENTS', appointments, headers });
       })
       .catch(res => {
-        setFlash('Error Loading Projects', 'red');
+        setFlash('Error Loading Appointments', 'red');
         dispatch(setHeaders(res.headers));
       })
   }
@@ -29,3 +29,18 @@ export const addAppointment = (appointment) => {
       })
   }
 }
+
+export const getSingleApp = (id) => {
+  return (dispatch) => {
+    axios.get(`/api/appointments/${id}`)
+      .then(res => {
+        const { data: appointments, headers } = res;
+        dispatch({ type: 'GET_SINGLE', appointments, headers });
+      })
+      .catch(res => {
+        setFlash('Error Loading Single Appointment', 'red');
+        dispatch(setHeaders(res.headers));
+      })
+  }
+}
+

@@ -3,8 +3,12 @@ Rails.application.routes.draw do
   namespace :api do
     resources :services
     resources :appointments
-    resources :imagess
+    resources :days do
+      resources :time_slots 
+    end 
+    resources :images
   end
+  get 'all_app', to: 'api/appointments#all_app'
 
   #Do not place any routes below this one
   get '*other', to: 'static#index'
