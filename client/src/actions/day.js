@@ -2,12 +2,12 @@ import axios from 'axios';
 import { setFlash } from './flash';
 import { setHeaders } from './headers';
 
-export const getAllTimes = (id) => {
+export const getDays = () => {
   return (dispatch) => {
-    axios.get(`/api/days/${id}/time_slots`)
+    axios.get('/api/days')
       .then(res => {
-        const { data: time, headers } = res;
-        dispatch({ type: 'SET_TIME', time, headers });
+        const { data: day, headers } = res;
+        dispatch({ type: 'SET_DAY', day, headers });
       })
       .catch(res => {
         setFlash('Error Loading Times', 'red');

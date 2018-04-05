@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20180330203256) do
   end
 
   create_table "time_slots", force: :cascade do |t|
-    t.integer "time"
+    t.string "time"
     t.boolean "taken", default: false
     t.bigint "day_id"
     t.datetime "created_at", null: false

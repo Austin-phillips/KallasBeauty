@@ -3,13 +3,12 @@ import { Button, Modal, Form, Segment, Divider } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { addAppointment } from '../actions/appointment';
 import { getServices } from '../actions/service';
-import moment from 'moment';
 
 class NewAppointment extends Component {
   state = { 
     first: '', 
     last: '', 
-    date: moment(), 
+    date: '', 
     time: '', 
     service: '', 
     price: '',

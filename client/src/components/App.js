@@ -15,6 +15,7 @@ import Appointments from './Appointments';
 import Schedule from './Schedule';
 import SingleApp from './SingleApp';
 import Time from './Time';
+import NewApp from './NewApp';
 import { Segment, Button, Menu, Sidebar, Icon } from 'semantic-ui-react';
 
 class App extends Component {
@@ -41,6 +42,7 @@ class App extends Component {
           <Route exact path='/gallery' component={Gallery} />
           <Route exact path='/services' component={Services} />
           <Route exact path='/time' component={Time} />
+          <Route exact path='/newapp' component={NewApp} />
           <ProtectedRoute exact path='/appointments' component={Appointments} />
           <ProtectedRoute exact path='/schedule' component={Schedule} />
           <ProtectedRoute path='/appointment/:id' component={SingleApp} />
