@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Divider } from 'semantic-ui-react'
+import { Sidebar, Segment, Menu, Divider } from 'semantic-ui-react'
 import Flash from './Flash';
 import { Link, withRouter } from 'react-router-dom';
 import { handleLogout } from '../actions/auth';

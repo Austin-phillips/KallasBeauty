@@ -3,7 +3,6 @@ import NoMatch from './NoMatch';
 import NavBar from './NavBar';
 import Login from './Login';
 import Register from './Register';
-import Flash from './Flash';
 import Home from './Home';
 import AuthRoute from './AuthRoute';
 import ProtectedRoute from './ProtectedRoute';
@@ -14,9 +13,8 @@ import Services from './Services';
 import Appointments from './Appointments';
 import Schedule from './Schedule';
 import SingleApp from './SingleApp';
-import Time from './Time';
-import NewApp from './NewApp';
-import { Segment, Button, Menu, Sidebar, Icon } from 'semantic-ui-react';
+import NewAppointment from './NewAppointment';
+import { Button } from 'semantic-ui-react';
 
 class App extends Component {
   state = { visible: false }
@@ -41,8 +39,7 @@ class App extends Component {
           <Route exact path='/' component={Home} />
           <Route exact path='/gallery' component={Gallery} />
           <Route exact path='/services' component={Services} />
-          <Route exact path='/time' component={Time} />
-          <Route exact path='/newapp' component={NewApp} />
+          <Route exact path='/newappointment' component={NewAppointment} />
           <ProtectedRoute exact path='/appointments' component={Appointments} />
           <ProtectedRoute exact path='/schedule' component={Schedule} />
           <ProtectedRoute path='/appointment/:id' component={SingleApp} />

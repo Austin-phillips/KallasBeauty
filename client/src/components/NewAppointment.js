@@ -1,118 +1,133 @@
-import React, { Component } from 'react';
-import { Button, Modal, Form, Segment, Divider } from 'semantic-ui-react';
+import React, { Component } from 'react'
+import { Table, Segment, Button } from 'semantic-ui-react'
+import { getDays } from '../actions/day';
 import { connect } from 'react-redux';
-import { addAppointment } from '../actions/appointment';
-import { getServices } from '../actions/service';
+import moment from 'moment';
+import { getAllTimes } from '../actions/time';
+import AppointmentForm from './AppointmentForm';
 
 class NewAppointment extends Component {
-  state = { 
-    first: '', 
-    last: '', 
-    date: '', 
-    time: '', 
-    service: '', 
-    price: '',
-    email: this.props.user.email,
-    modalOpen: false }
+    state = { date: '', dateId: '' }
 
   componentDidMount() {
-    this.props.dispatch(getServices())
+    this.props.dispatch(getDays())
   }
 
-  options = () => {
-    return this.props.services.map( service => {
-      return( 
-        { key: `${service.id}`, text: `${service.name}`, value: `${service.name}`, price: `${service.price}`}
-      )
+  getTimes = (id) => {
+    this.setState({ dateId: id })
+    this.props.dispatch(getAllTimes(id))
+  }
+
+  showDate = () => {
+    const filteredDays = this.props.days.filter(
+      (day) => {
+        return day.date.indexOf(this.state.date) !== -1;
+      }
+    );
+    return( filteredDays.map(day => {
+        return (
+          <Table.Row textAlign='center' key={day.id}>
+            <Button style={styles.showButton} color='green' onClick={() => this.getTimes(day.id)}>
+              Show Times for {moment(day.date).format("MM/DD/YYYY")} 
+            </Button>
+          </Table.Row>
+            )
     })
+  )
   }
 
-  handleOpen = () => this.setState({ modalOpen: true })
+  showTimes = () => {
+    return( this.props.time.map( time => {
+      return(
+        <Table.Row textAlign='center' key={time.id}>
+          <Table.Cell style={styles.font}>
+            {time.time}
+            <AppointmentForm 
+              timeId={time.id} 
+              time={time.time} 
+              date={this.state.date}
+              dateId={this.state.dateId}
+            />
+          </Table.Cell>
+        </Table.Row>
+      )
+    }))
+  }
 
-  handleClose = () => this.setState({ modalOpen: false })
-
-  handleChange = (e, { name, value}) => this.setState({ [name]: value })
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    const { dispatch } = this.props;
-    const { first, last, date, time, service, email } = this.state;
-    dispatch(addAppointment({ first, last, date, time, service, email }));
-    this.setState({ modalOpen: false })
+  handleChange = (e) => {
+    this.setState({ date: e.target.value })
   }
 
   render() {
-    return (
-      <div>
-        <Modal
-          trigger={<Button
-            style={{ marginBottom: '15px' }}
-            icon='plus'
-            content='New Appointment'
-            color='green'
-            onClick={this.handleOpen}>
-          </Button>}
-          open={this.state.modalOpen}
-          onClose={this.handleClose}
-        >
-          <Modal.Header>Book Appointment</Modal.Header>
-          <Segment basic>
-            <Form onSubmit={this.handleSubmit}>
-              <Form.Group widths='equal'>
-                <Form.Input
-                  label='First Name'
-                  name='first'
-                  autoFocus={true}
-                  required
-                  onChange={this.handleChange}
-                />
-                <Form.Input
-                  label='Last Name'
-                  name='last'
-                  required
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-              <Form.Group widths='equal'>
-                <Form.Select 
-                  onChange={this.handleChange}
-                  name='service'
-                  fluid 
-                  label='Service' 
-                  options={this.options()} 
-                  placeholder='Service' 
-                />
-                <Form.Field label='Price' placeholder='$20'/>
-              </Form.Group>
-              <Form.Group widths='equal'>
-                <Form.Input
-                  label='Time'
-                  name='time'
-                  placeholder='Minutes'
-                  required
-                  onChange={this.handleChange}
-                />
-                <Form.Input
-                  label='Date'
-                  name='date'
-                  placeholder='MM/DD/YYYY'
-                  required
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-              <Button color='green' type='submit'>Create</Button>
-              <Button color='red' onClick={() => this.handleClose()}>Cancel</Button>
-            </Form>
-          </Segment>
-        </Modal>
-      </div>
-    );
+    const { date } = this.state;
+    if(this.state.date === '')
+    return(
+      <Segment basic textAlign='center'>
+        Please Select a Date
+        <form>
+          <input type='date' value={date} onChange={this.handleChange} />
+        </form>
+        <Table singleLine>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell textAlign='center'>Date Selected</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+        </Table>
+        <Table singleLine>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell textAlign='center'>Times Available</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+        </Table>
+      </Segment>
+    )
+    else
+    return(
+      <Segment basic textAlign='center'>
+        <form>
+          <input type='date' value={date} onChange={this.handleChange} />
+        </form>
+        <Table singleLine>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell textAlign='center'>Date Selected</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+            <Table.Body>
+              {this.showDate()}
+            </Table.Body>
+        </Table>
+        <Table singleLine>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell textAlign='center'>Times Available</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+            <Table.Body>
+              {this.showTimes()}
+            </Table.Body>
+        </Table>
+      </Segment>
+    )
   }
 }
 
 const mapStateToProps = (state) => {
-  return { services: state.services, user: state.user }
+  return { days: state.day, time: state.time }
 }
 
+const styles = {
+  showButton: {
+    margin: '15px'
+  },
+  timeButton: {
+    marginLeft: '30px'
+  },
+  font: {
+    fontSize: '20px'
+  }
+}
 
 export default connect(mapStateToProps)(NewAppointment);

@@ -15,3 +15,16 @@ export const getAllTimes = (id) => {
       })
   }
 }
+
+export const updateService = (time, dayId, timeId, history) => {
+  return (dispatch) => {
+    axios.put(`/api/days/${dayId}/time_slots/${timeId}`, { time })
+      .then(res => {
+        dispatch({ type: 'UPDATE_TIME', time: res.data, headers: res.headers })
+      })
+      .catch(err => {
+        dispatch(setFlash('Failed to Make appointment', 'red'))
+        dispatch(setHeaders(err.headers))
+      })
+  }
+}

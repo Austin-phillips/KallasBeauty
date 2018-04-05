@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Segment, Table } from 'semantic-ui-react';
+import { Segment, Table, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { getAppointments } from '../actions/appointment';
-import NewAppointment from './NewAppointment';
+import { Link, withRouter } from 'react-router-dom';
 
 class Appointments extends Component {
 
@@ -37,7 +37,13 @@ class Appointments extends Component {
   render() {
     return (
       <Segment basic textAlign='center' style={{ height: '1000px'}}>
-        <NewAppointment />
+        <Link to='newappointment'>
+          <Button 
+            icon='plus'
+            content='New Appointment'
+            color='green'
+          ></Button>
+        </Link>
           <Table singleLine>
             <Table.Header>
               <Table.Row>
@@ -61,4 +67,4 @@ const mapStateToProps = (state) => {
   return { appointments: state.appointments}
 }
 
-export default connect(mapStateToProps)(Appointments);
+export default withRouter(connect(mapStateToProps)(Appointments));
