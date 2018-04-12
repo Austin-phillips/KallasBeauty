@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     end 
     resources :images
   end
+  post 'schedule', to: 'api/schedules#create'
   get 'all_app', to: 'api/appointments#all_app'
 
   #Do not place any routes below this one

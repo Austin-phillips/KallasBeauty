@@ -16,9 +16,9 @@ export const getAllTimes = (id) => {
   }
 }
 
-export const updateService = (time, dayId, timeId, history) => {
+export const updateTime = (time_slot, dayId, timeId, history) => {
   return (dispatch) => {
-    axios.put(`/api/days/${dayId}/time_slots/${timeId}`, { time })
+    axios.put(`/api/days/${dayId}/time_slots/${timeId}`, { time_slot })
       .then(res => {
         dispatch({ type: 'UPDATE_TIME', time: res.data, headers: res.headers })
       })

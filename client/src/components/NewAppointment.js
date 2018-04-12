@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table, Segment, Button } from 'semantic-ui-react'
+import { Table, Segment, Button, Form } from 'semantic-ui-react'
 import { getDays } from '../actions/day';
 import { connect } from 'react-redux';
 import moment from 'moment';
@@ -7,15 +7,16 @@ import { getAllTimes } from '../actions/time';
 import AppointmentForm from './AppointmentForm';
 
 class NewAppointment extends Component {
-    state = { date: '', dateId: '' }
+    state = { date: '', dayId: '' }
 
   componentDidMount() {
     this.props.dispatch(getDays())
   }
 
   getTimes = (id) => {
-    this.setState({ dateId: id })
+    this.setState({ dayId: id })
     this.props.dispatch(getAllTimes(id))
+    this.showTimes()
   }
 
   showDate = () => {
@@ -38,7 +39,13 @@ class NewAppointment extends Component {
 
   showTimes = () => {
     return( this.props.time.map( time => {
-      return(
+      return (<Table singleLine>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell textAlign='center'>Times Available</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
         <Table.Row textAlign='center' key={time.id}>
           <Table.Cell style={styles.font}>
             {time.time}
@@ -46,10 +53,12 @@ class NewAppointment extends Component {
               timeId={time.id} 
               time={time.time} 
               date={this.state.date}
-              dateId={this.state.dateId}
+              dayId={this.state.dayId}
             />
           </Table.Cell>
         </Table.Row>
+        </Table.Body>
+      </Table>
       )
     }))
   }
@@ -64,31 +73,17 @@ class NewAppointment extends Component {
     return(
       <Segment basic textAlign='center'>
         Please Select a Date
-        <form>
-          <input type='date' value={date} onChange={this.handleChange} />
-        </form>
-        <Table singleLine>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell textAlign='center'>Date Selected</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-        </Table>
-        <Table singleLine>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell textAlign='center'>Times Available</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-        </Table>
+        <Form>
+          <Form.Input style={styles.date} type='date' value={date} onChange={this.handleChange} widths='50%' />
+        </Form>
       </Segment>
     )
     else
     return(
       <Segment basic textAlign='center'>
-        <form>
-          <input type='date' value={date} onChange={this.handleChange} />
-        </form>
+        <Form>
+          <Form.Input style={styles.date} type='date' value={date} onChange={this.handleChange} widths='50%' />
+        </Form>
         <Table singleLine>
           <Table.Header>
             <Table.Row>
@@ -97,16 +92,6 @@ class NewAppointment extends Component {
           </Table.Header>
             <Table.Body>
               {this.showDate()}
-            </Table.Body>
-        </Table>
-        <Table singleLine>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell textAlign='center'>Times Available</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-            <Table.Body>
-              {this.showTimes()}
             </Table.Body>
         </Table>
       </Segment>
@@ -127,6 +112,9 @@ const styles = {
   },
   font: {
     fontSize: '20px'
+  },
+  date: {
+    width: '15%'
   }
 }
 

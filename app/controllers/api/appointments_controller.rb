@@ -6,7 +6,7 @@ class Api::AppointmentsController < ApplicationController
   end
 
   def all_app
-    render json: Appointment.all.order(time: :asc)
+    render json: Appointment.all.order(date: :asc, time: :asc)
   end 
 
   def show

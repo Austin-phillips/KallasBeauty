@@ -3,15 +3,21 @@ import { Button, Modal, Form, Segment, Divider } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { addAppointment } from '../actions/appointment';
 import { getServices } from '../actions/service';
+import { updateTime } from '../actions/time';
+import moment from 'moment';
 
 class AppointmentForm extends Component {
   state = { 
     first: '', 
     last: '', 
-    date: this.props.date, 
+    date: this.props.date,
+    dayId: this.props.dayId, 
     time: this.props.time, 
+    timeId: this.props.timeId,
     service: '', 
     price: '',
+    notes: '',
+    taken: true,
     email: this.props.user.email,
     modalOpen: false }
 
@@ -36,12 +42,14 @@ class AppointmentForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { dispatch } = this.props;
-    const { first, last, date, time, service, email } = this.state;
-    dispatch(addAppointment({ first, last, date, time, service, email }));
+    const { first, last, date, time, service, email, taken, dayId, timeId, notes } = this.state;
+    dispatch(addAppointment({ first, last, date, time, service, email, notes }));
+    dispatch(updateTime({ taken, time }, dayId, timeId, this.props.history))
     this.setState({ modalOpen: false })
   }
 
   render() {
+    const { date, time } = this.state
     return (
       <div>
         <Modal
@@ -53,7 +61,7 @@ class AppointmentForm extends Component {
           open={this.state.modalOpen}
           onClose={this.handleClose}
         >
-          <Modal.Header>Book Appointment</Modal.Header>
+          <Modal.Header>Book Appointment for {moment(date).format("dddd MMMM Do")} at {time}</Modal.Header>
           <Segment basic>
             <Form onSubmit={this.handleSubmit}>
               <Form.Group widths='equal'>
@@ -81,7 +89,7 @@ class AppointmentForm extends Component {
                   placeholder='Service' 
                 />
               </Form.Group>
-              <Button color='green' type='submit'>Create</Button>
+              <Button color='green' type='submit'>Book Now</Button>
               <Button color='red' onClick={() => this.handleClose()}>Cancel</Button>
             </Form>
           </Segment>

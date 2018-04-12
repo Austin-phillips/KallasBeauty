@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Header, Segment, } from 'semantic-ui-react';
 import { getSingleApp } from '../actions/appointment';
 import { connect } from 'react-redux';
-
+import moment from 'moment';
 class SingleApp extends Component {
 
   componentDidMount() {
@@ -19,7 +19,7 @@ class SingleApp extends Component {
         <Header as='h3'>Date: {date} at {time}</Header>
         <Header as='h3'>Notes: {notes}</Header>
         <Header as='h3'>Email: {email}</Header>
-        <Header as='h3'>Appointment Created at {created_at}</Header>
+        <Header as='h3'>Appointment Created on: {moment(created_at).format("MM/DD/YYYY")}</Header>
       </Segment>
     )
   }

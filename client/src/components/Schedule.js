@@ -1,20 +1,28 @@
 import React, { Component } from 'react';
-import { Segment, Table, Button } from 'semantic-ui-react';
+import { Segment, Table, Button, Form } from 'semantic-ui-react';
 import { getAllAppointments } from '../actions/allApps';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
+import NewSchedule from './NewSchedule';
 
 class Schedule extends Component {
+  state = { date: '' }
 
   componentDidMount() {
     this.props.dispatch( getAllAppointments() )
   }
 
-  client = () => {
-    console.log('Button Clicked')
+  handleChange = (e) => {
+    this.setState({ date: e.target.value })
   }
 
   showAppointments = () => {
+    const filteredApps = this.props.allApps.filter(
+      (day) => {
+        return day.date.indexOf(this.state.date) !== -1;
+      }
+    );
     if (this.props.allApps.length === 0)
       return (
         <Table.Row>
@@ -23,11 +31,11 @@ class Schedule extends Component {
       )
     else 
       return (
-        (this.props.allApps.map(app => {
+        (filteredApps.map(app => {
           return (
             <Table.Row key={app.id}>
               <Table.Cell>{app.first} {app.last}</Table.Cell>
-              <Table.Cell>{app.date}</Table.Cell>
+              <Table.Cell>{moment(app.date).format("MM/DD/YYYY")} </Table.Cell>
               <Table.Cell>{app.time}</Table.Cell>
               <Table.Cell>{app.service}</Table.Cell>
               <Table.Cell>
@@ -45,8 +53,14 @@ class Schedule extends Component {
   }
 
   render() {
+    const { date } = this.state;
     return (
       <Segment basic textAlign='center' style={{ height: '1000px' }}>
+        Please Select a Date
+        <Form>
+          <Form.Input style={styles.date} type='date' value={date} onChange={this.handleChange} widths='50%' />
+        </Form>
+        <NewSchedule />
         <Table singleLine>
           <Table.Header>
             <Table.Row>
@@ -63,6 +77,12 @@ class Schedule extends Component {
         </Table>
       </Segment>
     );
+  }
+}
+
+const styles = {
+  date: {
+    width: '15%'
   }
 }
 
