@@ -7,6 +7,7 @@ import images from './images';
 import allApps from './allApps';
 import time from './time';
 import day from './day';
+import lastDate from './lastDate';
 
 const rootReducer = combineReducers({
   user,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   images,
   allApps,
   time,
-  day
+  day,
+  lastDate
 });
 
 export default rootReducer;

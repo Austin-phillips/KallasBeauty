@@ -20,7 +20,7 @@ class AdminGallery extends Component {
   displayImages = () => {
     return this.props.images.map(image => {
       return (
-        <Grid.Column computer={3} tablet={4} phone={12} key={image.id}>
+        <div>
           <Image
             cloudName='kallasbeauty'
             dpr="auto"
@@ -29,27 +29,39 @@ class AdminGallery extends Component {
             crop="scale"
             publicId={image.publicId}
             border="3px_solid_black"
+            key={image.id}
           >
           </Image>
           <Button floated='left' color='red' size='tiny' icon='trash' onClick={() => this.deleteImage(image.id)}></Button>
-        </Grid.Column>
+        </div>
       )
     })
   }
 
   render() {
     return (
-      <Segment style={{ height: '1000px'}} basic textAlign='center'>
-        <Header as='h1'>Gallery</Header>
+      <Segment style={styles.background} basic textAlign='center'>
+        <Header style={styles.header} as='h1'>Gallery</Header>
         <NewImage />
         <Divider section />
-        <Grid columns={12}>
+        <Grid>
           <Grid.Row>
-            {this.displayImages()}
+            <Grid.Column computer={3} tablet={4} phone={12}>
+              {this.displayImages()}
+            </Grid.Column>
           </Grid.Row>
         </Grid>
       </Segment>
     );
+  }
+}
+
+const styles = {
+  background: {
+    width: '100%',
+  },
+  header: {
+    margin: '25px'
   }
 }
 

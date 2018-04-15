@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
-import { Table, Segment, Button, Form } from 'semantic-ui-react'
+import { Table, Segment, Button, Form, Header } from 'semantic-ui-react'
 import { getDays } from '../actions/day';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { getAllTimes } from '../actions/time';
 import AppointmentForm from './AppointmentForm';
+import { getLastDate } from '../actions/lastDate';
 
 class NewAppointment extends Component {
     state = { date: '', dayId: '' }
 
   componentDidMount() {
     this.props.dispatch(getDays())
+    this.props.dispatch(getLastDate())
   }
 
   getTimes = (id) => {
@@ -69,10 +71,13 @@ class NewAppointment extends Component {
 
   render() {
     const { date } = this.state;
+    const { lastDate } = this.props;
     if(this.state.date === '')
     return(
-      <Segment basic textAlign='center'>
-        Please Select a Date
+      <Segment basic textAlign='center' style={styles.background}>
+        {this.props.lastDate === null ?
+          <Header>Sorry the schdule is not set up yet</Header> :
+          <Header>The Furthest out you can book is: { moment(lastDate.date).format("MM/DD/YYYY")}</Header>}
         <Form>
           <Form.Input style={styles.date} type='date' value={date} onChange={this.handleChange} widths='50%' />
         </Form>
@@ -100,7 +105,7 @@ class NewAppointment extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { days: state.day, time: state.time }
+  return { days: state.day, time: state.time, lastDate: state.lastDate }
 }
 
 const styles = {
@@ -115,6 +120,10 @@ const styles = {
   },
   date: {
     width: '15%'
+  },
+  background: {
+    width: '100%',
+    height: '100vh'
   }
 }
 

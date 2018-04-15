@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getServices, deleteService } from '../actions/service';
 import EditService from './EditService';
 import NewService from './NewService';
+import Wood from '../images/wood.jpg';
 
 class AdminServices extends Component {
   state = { editing: false }
@@ -28,7 +29,7 @@ class AdminServices extends Component {
           tablet={12}
           phone={12}
         >
-          <Card centered raised fluid style={style.box} key={service.id} >
+          <Card centered raised fluid style={styles.box} key={service.id} >
             <Card.Content>
               <Card.Header>{service.name}</Card.Header>
               <Card.Meta> ${service.price}</Card.Meta>
@@ -48,8 +49,8 @@ class AdminServices extends Component {
   }
   render() {
     return (
-      <div>
-        <Segment basic inverted textAlign='center'>
+      <div style={styles.background}>
+        <Segment basic textAlign='center'>
           <Header as='h1' textAlign='center'>Services</Header>
           <NewService />
         <Grid columns={12}>
@@ -67,10 +68,16 @@ const mapStateToProps = (state) => {
   return { services: state.services, user: state.user }
 }
 
-const style = {
+const styles = {
   box: {
     margin:'4px',
   },
+  background: {
+    width: '100%',
+    background: `url(${Wood}) no-repeat center center fixed`,
+    backgroundSize: 'cover',
+    padding: '0px',
+  }
 }
 
 export default connect(mapStateToProps)(AdminServices);

@@ -15,25 +15,14 @@ import Schedule from './Schedule';
 import SingleApp from './SingleApp';
 import NewAppointment from './NewAppointment';
 import { Button } from 'semantic-ui-react';
+import Footer from './Footer';
 
 class App extends Component {
-  state = { visible: false }
-
-  toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
   render() {
-    const { visible } = this.state;
     return (
       <div>
-      <Button 
-        basic 
-        size='large' 
-        onClick={this.toggleVisibility} 
-        icon='content' 
-        content='Menu'
-        style={styles.button}>
-        </Button>
-      <NavBar visible={visible}>
+      <NavBar>
       <FetchUser>
         <Switch>
           <Route exact path='/' component={Home} />
@@ -49,20 +38,9 @@ class App extends Component {
         </Switch>
       </FetchUser>
       </NavBar>
+      <Footer />
       </div>
     );
-  }
-}
-
-const styles = {
-  button: {
-    position: 'relative',
-    fontSize: '1.3em',
-    textAlign: 'center',
-    top: '0',
-    left: '0',
-    zIndex: '9999',
-    cursor: 'pointer',
   }
 }
 

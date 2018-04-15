@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import { Segment, Table, Button, Form } from 'semantic-ui-react';
+import { Segment, Table, Button, Form, Header } from 'semantic-ui-react';
 import { getAllAppointments } from '../actions/allApps';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import NewSchedule from './NewSchedule';
+import { getLastDate } from '../actions/lastDate';
 
 class Schedule extends Component {
   state = { date: '' }
 
   componentDidMount() {
     this.props.dispatch( getAllAppointments() )
+    this.props.dispatch( getLastDate() )
   }
 
   handleChange = (e) => {
@@ -54,12 +56,16 @@ class Schedule extends Component {
 
   render() {
     const { date } = this.state;
+    const { lastDate } = this.props;
     return (
-      <Segment basic textAlign='center' style={{ height: '1000px' }}>
+      <Segment basic textAlign='center' style={{ height: '100vh' }}>
         Please Select a Date
         <Form>
           <Form.Input style={styles.date} type='date' value={date} onChange={this.handleChange} widths='50%' />
         </Form>
+        {this.props.lastDate === null ?
+          <Header floated='left'>You don't have the schedule setup yet...</Header> :
+          <Header floated='left'>The Schedule ends on: {moment(lastDate.date).format("MM/DD/YYYY")}</Header>}
         <NewSchedule />
         <Table singleLine>
           <Table.Header>
@@ -87,7 +93,7 @@ const styles = {
 }
 
 const mapStateToProps = (state) => {
-  return { allApps: state.allApps }
+  return { allApps: state.allApps, lastDate: state.lastDate }
 }
 
 export default connect(mapStateToProps)(Schedule);

@@ -1,6 +1,10 @@
 class Api::SchedulesController < ApplicationController
   before_action :variables
 
+  def last_date
+    render json: Day.last
+  end 
+
   def create
     start_date = Date.parse(params[:start])
     end_date = Date.parse(params[:end])

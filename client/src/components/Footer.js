@@ -13,7 +13,7 @@ const Footer = () => (
 
 const styles = {
   footer: {
-    backgroundColor: 'rgba(0, 0, 0, .5)',
+    backgroundColor: 'black',
     bottom: '0',
     left: '0',
     right: '0',

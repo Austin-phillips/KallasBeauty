@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Sidebar, Segment, Menu, Divider } from 'semantic-ui-react'
+import { Sidebar, Segment, Menu, Divider, Button } from 'semantic-ui-react'
 import Flash from './Flash';
 import { Link, withRouter } from 'react-router-dom';
 import { handleLogout } from '../actions/auth';
@@ -8,21 +8,30 @@ import { connect } from 'react-redux';
 
 
 class NavBar extends Component {
+  state = { visible: false }
+
+  toggleVisibility = () => this.setState({ visible: !this.state.visible })
+
+  toggleVisibilityLogout = () => {
+    const { dispatch, history } = this.props;
+    dispatch(handleLogout(history))
+    this.setState({ visible: !this.state.visible })
+  }
 
   rightNavs = () => {
-    const { user, dispatch, history } = this.props;
+    const { user } = this.props;
 
     if (user.id) {
       return (
         <Menu.Item
           icon='user circle' 
           name='Logout'
-          onClick={() => dispatch(handleLogout(history))}
+          onClick={() => this.toggleVisibilityLogout()}
         />
       );
     }
     return (
-      <Link to='/login'>
+      <Link to='/login' onClick={() => this.toggleVisibility()}>
         <Menu.Item icon='user circle' name='Login' />
       </Link>
     );
@@ -34,19 +43,19 @@ class NavBar extends Component {
       return(
         <div>
           <Divider section />
-          <Link to='/'>
-            <Menu.Item name='home' />
+          <Link to='/' onClick={() => this.toggleVisibility()}>
+            <Menu.Item name='home'/>
           </Link>
           <Divider section />
-          <Link to='/gallery'>
+          <Link to='/gallery' onClick={() => this.toggleVisibility()}>
             <Menu.Item name='Gallery' />
           </Link>
           <Divider section />
-          <Link to='/services'>
+          <Link to='/services' onClick={() => this.toggleVisibility()}>
             <Menu.Item name='Services' />
           </Link>
           <Divider section />
-          <Link to='/schedule'>
+          <Link to='/schedule' onClick={() => this.toggleVisibility()}>
             <Menu.Item name='Schedule' />
           </Link>
           <Divider section />
@@ -56,19 +65,19 @@ class NavBar extends Component {
     return(
       <div>
         <Divider section />
-        <Link to='/'>
+        <Link to='/' onClick={() => this.toggleVisibility()}>
           <Menu.Item name='home' />
         </Link>
         <Divider section />
-        <Link to='/gallery'>
+        <Link to='/gallery' onClick={() => this.toggleVisibility()}>
           <Menu.Item name='Gallery' />
         </Link>
         <Divider section />
-        <Link to='/services'>
+        <Link to='/services' onClick={() => this.toggleVisibility()}>
           <Menu.Item name='Services' />
         </Link>
         <Divider section />
-        <Link to='/appointments'>
+        <Link to='/appointments' onClick={() => this.toggleVisibility()}>
           <Menu.Item name='Book Appointment' />
         </Link>
         <Divider section />
@@ -77,11 +86,20 @@ class NavBar extends Component {
   }
 
   render() {
-    const { children, visible } = this.props;
+    const { children } = this.props;
+    const { visible } = this.state;
     return (
       <div>
+        <Button
+          basic
+          size='large'
+          onClick={this.toggleVisibility}
+          icon='content'
+          content='Menu'
+          style={styles.button}>
+        </Button>
         <Sidebar.Pushable as={Segment}>
-          <Sidebar as={Menu} animation='push' width='thin' visible={visible} icon='labeled' vertical inverted>
+          <Sidebar as={Menu} animation='overlay' width='thin' visible={visible} icon='labeled' vertical inverted>
             {this.rightNavs()}
             {this.adminNavs()}
           </Sidebar>
@@ -97,8 +115,14 @@ class NavBar extends Component {
   }
 }
 
+const styles = {
+  button: {
+    fontSize: '1.3em',
+    textAlign: 'center',
+  }
+}
+
 const mapStateToProps = state => {
   return { user: state.user };
 };
-
 export default withRouter(connect(mapStateToProps)(NavBar));

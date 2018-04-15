@@ -3,6 +3,7 @@ import { Header, Grid, Card, Segment, Divider } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { getServices } from '../actions/service';
 import AdminServices from './AdminServices';
+import Wood from '../images/wood.jpg';
 
 class Services extends Component {
 
@@ -20,7 +21,7 @@ class Services extends Component {
           tablet={12}
           phone={12}
         >
-          <Card centered raised fluid style={box} >
+          <Card centered raised fluid style={styles.box} >
             <Card.Content>
               <Card.Header>{service.name}</Card.Header>
               <Card.Meta> ${service.price}</Card.Meta>
@@ -40,9 +41,9 @@ class Services extends Component {
     );
     else 
     return (
-      <div>
-        <Segment basic inverted textAlign='center'>
-          <Header as='h1' textAlign='center' style={{ marginBottom: '20px'}}>Services</Header>
+      <div style={styles.background}>
+        <Segment basic textAlign='center'>
+          <Header as='h1' textAlign='center' style={styles.header}>Services</Header>
           <Divider section />
           <Grid columns={12}>
             <Grid.Row centered>
@@ -59,8 +60,16 @@ const mapStateToProps = (state) => {
   return { services: state.services, user: state.user }
 }
 
-const box = {
-  margin: '4px',
+const styles = {
+  box: {
+    margin: '4px',
+  },
+  background: {
+    width: '100%',
+    background: `url(${Wood}) no-repeat center center fixed`,
+    backgroundSize: 'cover',
+    padding: '0px',
+  }
 }
 
 export default connect(mapStateToProps)(Services);
