@@ -38,7 +38,6 @@ class App extends Component {
         </Switch>
       </FetchUser>
       </NavBar>
-      <Footer />
       </div>
     );
   }

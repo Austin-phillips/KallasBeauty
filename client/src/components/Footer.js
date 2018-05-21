@@ -18,7 +18,7 @@ const styles = {
     left: '0',
     right: '0',
     height: '85px',
-    position: 'relative'
+    position: 'absolute'
   }
 }
 

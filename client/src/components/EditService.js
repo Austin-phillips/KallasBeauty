@@ -37,7 +37,7 @@ class EditService extends Component {
           onClose={this.handleClose}
         >
           <Modal.Header>Edit Service</Modal.Header>
-          <Segment>
+          <Segment basic>
             <Form onSubmit={this.handleSubmit}>
               <Form.Group widths='equal'>
                 <Form.Input

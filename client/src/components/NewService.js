@@ -35,7 +35,7 @@ class NewService extends Component {
           onClose={this.handleClose}
         >
           <Modal.Header>Create New Service</Modal.Header>
-          <Segment>
+          <Segment basic>
             <Form onSubmit={this.handleSubmit}>
               <Form.Group widths='equal'>
                 <Form.Input
