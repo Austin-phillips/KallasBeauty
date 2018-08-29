@@ -37,7 +37,7 @@
     )
 
     User.create(
-      email: 'phillips.austin51@gmail.com',
+      email: 'jaiden@gmail.com',
       password: 'password',
     )
 

@@ -6,4 +6,9 @@ class User < ActiveRecord::Base
           
   has_many :appointments
   include DeviseTokenAuth::Concerns::User
-end
+
+  after_create :new_user_email
+  def new_user_email
+    NewUserEmailMailer.new_user_email(self).deliver
+  end 
+  end

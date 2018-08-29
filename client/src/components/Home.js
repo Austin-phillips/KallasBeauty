@@ -32,12 +32,13 @@ const styles = {
     padding: '100px',
   },
   about: {
-    marginTop: '400px',
+    marginTop: '200px',
     height: '200px',
     width: '100%',
-    padding: '0px',
+    padding: '100px',
     background: 'white',
-    color: 'black'
+    color: 'black',
+    position: 'fixed',
   }
 }
 

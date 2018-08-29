@@ -9,6 +9,7 @@ gem 'devise'
 gem 'devise_token_auth'
 gem 'cloudinary'
 gem 'date'
+gem 'figaro'
 
 group :development, :test do
   gem 'pry'
