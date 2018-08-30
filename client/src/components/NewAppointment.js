@@ -97,6 +97,7 @@ class NewAppointment extends Component {
           </Table.Header>
             <Table.Body>
               {this.showDate()}
+              {this.showTimes()}
             </Table.Body>
         </Table>
       </Segment>

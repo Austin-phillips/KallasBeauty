@@ -18,8 +18,8 @@
     ]
     @taken = [ true, false ]
     @day_id = 0
-    @date1 = "2018-01-01"
-    @date2 = "2018-04-30"
+    @date1 = "2018-08-01"
+    @date2 = "2018-10-30"
 
     25.times do 
       Service.create(
@@ -41,25 +41,25 @@
       password: 'password',
     )
 
-  # date1 = Date.parse(@date1)
-  # date2 = Date.parse(@date2)
-  # @schedule = (date1..date2).to_a
-  # @schedule.each do |d|
-  #   1.times do
-  #     @day_id += 1
-  #     Day.create(
-  #       date: d ,
-  #       day: d.strftime("%A")
-  #     )
-  #     @time_slots.each do |t|
-  #       TimeSlot.create(
-  #         day_id: @day_id,
-  #         time: t,
-  #         taken: false
-  #       )
-  #     end 
-  #   end 
-  # end 
+  date1 = Date.parse(@date1)
+  date2 = Date.parse(@date2)
+  @schedule = (date1..date2).to_a
+  @schedule.each do |d|
+    1.times do
+      @day_id += 1
+      Day.create(
+        date: d ,
+        day: d.strftime("%A")
+      )
+      @time_slots.each do |t|
+        TimeSlot.create(
+          day_id: @day_id,
+          time: t,
+          taken: false
+        )
+      end 
+    end 
+  end 
 
     # 1.times do
     #   @day_id += 1

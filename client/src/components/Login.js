@@ -68,15 +68,6 @@ class Login extends Component {
 }
 
 const styles = {
-  card: {
-    height: '450px',
-    width: '400px',
-  },
-  cardPosition: {
-    width: '100%',
-    height: '500px',
-    padding: '200px'
-  },
   backgroundImage: {
     width: '100%',
     background: `url(${Wood}) no-repeat center center fixed`,
@@ -85,7 +76,14 @@ const styles = {
     height: '100vh'
   },
   formPosition: {
-    margin: '25px'
+    margin: '50px'
+  },
+  cardPosition: {
+    position: 'fixed',
+    top: '30%',
+    left: '50%',
+    marginTop: '-50px',
+    marginLeft: '-150px'
   },
   header: {
     marginTop: '25px'

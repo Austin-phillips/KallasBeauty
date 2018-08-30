@@ -16,6 +16,7 @@ class Api::AppointmentsController < ApplicationController
   def create
     @appointment = current_user.appointments.create(appointment_params)
     if @appointment.save
+      NewAppointmentEmailMailer.new_appointment_email(@appointment).deliver
       render json: @appointment
     else
       render json: @appointment.errors, status: :unprocessable_entity

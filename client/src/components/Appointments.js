@@ -26,7 +26,6 @@ class Appointments extends Component {
             <Table.Cell>{app.date}</Table.Cell>
             <Table.Cell>{app.time}</Table.Cell>
             <Table.Cell>{app.service}</Table.Cell>
-            {app.notes === '' ? <Table.Cell>None</Table.Cell> : <Table.Cell>{app.notes}</Table.Cell>}
           </Table.Row>
         ) 
       })
@@ -51,7 +50,6 @@ class Appointments extends Component {
                 <Table.HeaderCell>Date</Table.HeaderCell>
                 <Table.HeaderCell>Time</Table.HeaderCell>
                 <Table.HeaderCell>Service</Table.HeaderCell>
-                <Table.HeaderCell>Notes</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>

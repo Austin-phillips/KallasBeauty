@@ -82,14 +82,8 @@ class Register extends Component {
 }
 
 const styles = {
-  card: {
-    height: '400px',
-    width: '400px',
-  },
-  cardPosition: {
-    width: '100%',
-    height: '500px',
-    padding: '200px'
+  formPosition: {
+    margin: '50px'
   },
   backgroundImage: {
     width: '100%',
@@ -98,8 +92,12 @@ const styles = {
     padding: '0px',
     height: '100vh'
   },
-  formPosition: {
-    margin: '25px'
+  cardPosition: {
+    position: 'fixed',
+    top: '30%',
+    left: '50%',
+    marginTop: '-50px',
+    marginLeft: '-150px'
   },
   header: {
     marginTop: '25px'
