@@ -73,14 +73,14 @@ const styles = {
     background: `url(${Wood}) no-repeat center center fixed`,
     backgroundSize: 'cover',
     padding: '0px',
-    height: '100vh'
+    height: '150vh'
   },
   formPosition: {
     margin: '50px'
   },
   cardPosition: {
     position: 'fixed',
-    top: '30%',
+    top: '18%',
     left: '50%',
     marginTop: '-50px',
     marginLeft: '-150px'

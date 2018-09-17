@@ -59,6 +59,7 @@ class AdminGallery extends Component {
 const styles = {
   background: {
     width: '100%',
+    height: '200vh'
   },
   header: {
     margin: '25px'

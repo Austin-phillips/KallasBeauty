@@ -24,7 +24,7 @@ const styles = {
     background: `url(${Wood}) no-repeat center center fixed`,
     backgroundSize: 'cover',
     padding: '0px',
-    height: '100vh'
+    height: '150vh'
   },
   header: {
     height: '200px',

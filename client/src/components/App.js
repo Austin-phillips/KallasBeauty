@@ -37,6 +37,7 @@ class App extends Component {
           <Route component={NoMatch} />
         </Switch>
       </FetchUser>
+      <Footer />
       </NavBar>
       </div>
     );

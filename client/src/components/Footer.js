@@ -17,8 +17,8 @@ const styles = {
     bottom: '0',
     left: '0',
     right: '0',
-    height: '85px',
-    position: 'absolute'
+    height: '125px',
+    position: 'static'
   }
 }
 

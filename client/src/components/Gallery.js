@@ -60,7 +60,7 @@ class Gallery extends Component {
 const styles = {
   background: {
     width: '100%',
-    height: '100vh',
+    height: '150vh',
   },
   header: {
     margin: '25px'

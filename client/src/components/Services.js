@@ -68,7 +68,8 @@ const styles = {
     width: '100%',
     background: `url(${Wood}) no-repeat center center fixed`,
     backgroundSize: 'cover',
-    padding: '0px',
+    padding: '25px',
+    // height: '100vh',
   }
 }
 
