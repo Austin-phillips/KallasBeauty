@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  root "application#index"
   mount_devise_token_auth_for 'User', at: 'api/auth'
   namespace :api do
     resources :services
