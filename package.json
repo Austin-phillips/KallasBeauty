@@ -2,7 +2,8 @@
   "name": "create-repack-app",
   "version": "1.0.0",
     "engines": {
-      "node": "9.2.0"
+      "node": "9.2.0",
+      "npm": "6.4.1"
     },
   "scripts": {
     "build": "cd client && npm install --only=dev && npm install && npm run build && cd ..",
