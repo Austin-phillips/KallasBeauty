@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Header, Grid, Card, Segment, Divider } from 'semantic-ui-react';
+import { Header, Grid, Card, Segment, Divider, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
 import { getServices } from '../actions/service';
 import AdminServices from './AdminServices';
 import Wood from '../images/wood.jpg';
+import AppointmentForm from './AppointmentForm';
 
 class Services extends Component {
 
@@ -12,7 +14,7 @@ class Services extends Component {
   }
 
   displayServices = () => {
-    const { services } = this.props;
+    const { services, user } = this.props;
     return services.map( service => {
       return(
         <Grid.Column
@@ -25,8 +27,10 @@ class Services extends Component {
             <Card.Content>
               <Card.Header>{service.name}</Card.Header>
               <Card.Meta> ${service.price}</Card.Meta>
-              <Card.Meta>Time: {service.time} min</Card.Meta>
+              <Card.Meta>Duration of Service: {service.time} min</Card.Meta>
               <Card.Description>{service.description}</Card.Description>
+              <Divider section />
+              {this.props.user.id ? <AppointmentForm service={service} /> : <Link to='login'><Button color='blue'>Book Now</Button></Link>}
             </Card.Content>
           </Card>
         </Grid.Column>
@@ -73,4 +77,4 @@ const styles = {
   }
 }
 
-export default connect(mapStateToProps)(Services);
+export default withRouter(connect(mapStateToProps)(Services));

@@ -21,7 +21,18 @@
     @date1 = "2018-08-01"
     @date2 = "2018-10-30"
 
-    25.times do 
+    Appointment.create(
+      date: "2018-12-12",
+      time: '9:00 AM',
+      service: 'Volume Lashes',
+      first: 'Austin',
+      last: 'Phillips',
+      email: 'Philly@gmail.com',
+      notes: '',
+      length: '120',
+    )
+
+    1.times do 
       Service.create(
         name: Faker::Food.dish,
         price: Faker::Commerce.price,

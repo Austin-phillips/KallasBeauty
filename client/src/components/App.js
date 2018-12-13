@@ -13,7 +13,7 @@ import Services from './Services';
 import Appointments from './Appointments';
 import Schedule from './Schedule';
 import SingleApp from './SingleApp';
-import NewAppointment from './NewAppointment';
+import NewApp from './NewApp';
 import { Button } from 'semantic-ui-react';
 import Footer from './Footer';
 
@@ -28,7 +28,7 @@ class App extends Component {
           <Route exact path='/' component={Home} />
           <Route exact path='/gallery' component={Gallery} />
           <Route exact path='/services' component={Services} />
-          <Route exact path='/newappointment' component={NewAppointment} />
+          <Route exact path='/newapp' component={NewApp} />
           <ProtectedRoute exact path='/appointments' component={Appointments} />
           <ProtectedRoute exact path='/schedule' component={Schedule} />
           <ProtectedRoute path='/appointment/:id' component={SingleApp} />

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Segment } from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleLogout } from '../actions/auth';
@@ -29,6 +29,7 @@ class NavBar extends Component {
   }
 
   render() {
+    const { children } = this.props;
     return (
       <div>
         <Menu pointing secondary>
@@ -41,11 +42,9 @@ class NavBar extends Component {
           <Link to='/services'>
             <Menu.Item name='Services' />
           </Link>
-          <Link to='/appointments'>
-            <Menu.Item name='Book Appointment' />
-          </Link>
           { this.rightNavs() }
         </Menu>
+          {children}
       </div>
     );
   }

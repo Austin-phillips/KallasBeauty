@@ -37,7 +37,7 @@ class Api::AppointmentsController < ApplicationController
 
   private
     def appointment_params
-      params.require(:appointment).permit(:date, :time, :first, :last, :notes, :service, :email)
+      params.require(:appointment).permit(:date, :time, :first, :last, :notes, :service, :email, :length)
     end
 
     def set_appointment

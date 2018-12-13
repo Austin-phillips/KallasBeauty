@@ -17,6 +17,7 @@ class Api::ImagesController < ApplicationController
     }
     begin
       cloud_photo = Cloudinary::Uploader.upload(params[params.keys.first],auth)
+      binding.pry
       image = Image.create(publicId: cloud_photo['public_id'])
       render json: image
     rescue => e 

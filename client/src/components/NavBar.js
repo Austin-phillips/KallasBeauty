@@ -3,6 +3,8 @@ import { Sidebar, Segment, Menu, Divider, Button } from 'semantic-ui-react'
 import Flash from './Flash';
 import { Link, withRouter } from 'react-router-dom';
 import { handleLogout } from '../actions/auth';
+import { isBrowser } from 'react-device-detect';
+import NavBarTop from './NavBarTop';
 import { connect } from 'react-redux';
 
 
@@ -77,10 +79,6 @@ class NavBar extends Component {
           <Menu.Item name='Services' />
         </Link>
         <Divider section />
-        <Link to='/appointments' onClick={() => this.toggleVisibility()}>
-          <Menu.Item name='Book Appointment' />
-        </Link>
-        <Divider section />
       </div>
     )
   }
@@ -88,6 +86,10 @@ class NavBar extends Component {
   render() {
     const { children } = this.props;
     const { visible } = this.state;
+    if(isBrowser)
+    return(
+      <NavBarTop children={children} />
+    )
     return (
       <div>
         <Button
