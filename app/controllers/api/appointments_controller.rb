@@ -1,5 +1,5 @@
 class Api::AppointmentsController < ApplicationController
-  before_action :set_appointment, except: [:index, :create, :all_app, :show]
+  before_action :set_appointment, except: [:index, :create, :all_app, :show, :reset]
 
   def index
     render json: current_user.appointments.all
@@ -34,6 +34,17 @@ class Api::AppointmentsController < ApplicationController
   def destroy
     @appointment.destroy
   end
+
+  def reset
+    email = params["password"]
+    user = User.where(email: email)
+    user.send_reset_password_instructions
+    # @user_id = params["id"].to_i
+    # @password = params["password"]
+    # @password_confirmation = params["passwordConfirmation"]
+
+    # User.find(@user_id).reset_password(@password, @password_confirmation)
+  end 
 
   private
     def appointment_params

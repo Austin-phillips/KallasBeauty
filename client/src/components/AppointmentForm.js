@@ -43,7 +43,7 @@ class AppointmentForm extends Component {
 
   handleOpen = () => this.setState({ modalOpen: true })
 
-  handleClose = () => this.setState({ modalOpen: false })
+  handleClose = () => this.setState({ modalOpen: false, date: '' })
 
   handleChange = (e, { name, value}) => this.setState({ [name]: value })
 
@@ -62,17 +62,17 @@ class AppointmentForm extends Component {
 
     appointments.forEach((app) => available.forEach((time, index, array) => {
       if(app.date === date && app.time === time['text']) {
-        if(app.length === '60') {
+        if(app.length === '1 Hour') {
           var hour = array[index + 1]
           time['disabled'] = true
           hour['disabled'] = true
-        }else if (app.length === '90') {
+        }else if (app.length === '1.5 Hours') {
           var hour = array[index + 1]
           var hourhalf = array[index + 2] 
           time['disabled'] = true
           hour['disabled'] = true
           hourhalf['disabled'] = true
-        }else if (app.length === '120') {
+        }else if (app.length === '2 Hours') {
           var hour = array[index + 1]
           var hourhalf = array[index + 2]
           var twohour = array[index + 3]
@@ -80,7 +80,7 @@ class AppointmentForm extends Component {
           hour['disabled'] = true
           hourhalf['disabled'] = true
           twohour['disabled'] = true
-        }else if (app.length === '180') {
+        }else if (app.length === '2.5 Hours') {
           var hour = array[index + 1]
           var hourhalf = array[index + 2]
           var twohour = array[index + 3]
@@ -164,8 +164,6 @@ class AppointmentForm extends Component {
                   label='Date' 
                   type='date' 
                   name='date' 
-                  // value={this.state.date} 
-                  // onSelect={this.handleDateChange}
                   onChange={this.handleDateChange} 
                 />
                 <Form.Select
@@ -180,7 +178,6 @@ class AppointmentForm extends Component {
               </Form.Group>
               <Button color='green' type='submit'>Book Now</Button>
               <Button color='red' onClick={() => this.handleClose()}>Cancel</Button>
-              <Button color='blue' onClick={() => this.logArray()}>Log Array</Button>
             </Form>
           </Segment>
         </Modal>

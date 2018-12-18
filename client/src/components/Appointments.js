@@ -36,8 +36,9 @@ class Appointments extends Component {
   render() {
     return (
       <Segment basic textAlign='center' style={{ height: '1000px'}}>
-        <Link to='newappointment'>
+        <Link to='services'>
           <Button 
+            floated='left'
             icon='plus'
             content='New Appointment'
             color='green'

@@ -85,3 +85,23 @@ export const validateToken = (callBack = () => {}) => {
       .catch(() => callBack());
   };
 };
+
+export const passwordReset = ( password, passwordConfirmation, id, history) => {
+  return dispatch => {
+    axios.post('/reset_password', { password, passwordConfirmation, id })
+      .then(res => {
+        const { data: { data: user }, headers } = res;
+        dispatch(setHeaders(headers));
+        history.push('/login');
+      })
+      .catch(res => {
+        const messages =
+          res.response.data.errors.map(message =>
+            <div>{message}</div>);
+        const { headers } = res;
+        dispatch(setHeaders(headers));
+        dispatch(setFlash(messages, 'red'));
+      });
+  };
+};
+

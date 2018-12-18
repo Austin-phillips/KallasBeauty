@@ -27,7 +27,7 @@ class Services extends Component {
             <Card.Content>
               <Card.Header>{service.name}</Card.Header>
               <Card.Meta> ${service.price}</Card.Meta>
-              <Card.Meta>Duration of Service: {service.time} min</Card.Meta>
+              <Card.Meta>Duration of Service: {service.time}</Card.Meta>
               <Card.Description>{service.description}</Card.Description>
               <Divider section />
               {this.props.user.id ? <AppointmentForm service={service} /> : <Link to='login'><Button color='blue'>Book Now</Button></Link>}
@@ -73,7 +73,7 @@ const styles = {
     background: `url(${Wood}) no-repeat center center fixed`,
     backgroundSize: 'cover',
     padding: '25px',
-    // height: '100vh',
+    height: '100vh',
   }
 }
 

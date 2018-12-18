@@ -29,7 +29,7 @@ class NavBar extends Component {
   }
 
   render() {
-    const { children } = this.props;
+    const { children, user } = this.props;
     return (
       <div>
         <Menu pointing secondary>
@@ -41,6 +41,9 @@ class NavBar extends Component {
           </Link>
           <Link to='/services'>
             <Menu.Item name='Services' />
+          </Link>
+          <Link to='/appointments'>
+            <Menu.Item name='Appointments' />
           </Link>
           { this.rightNavs() }
         </Menu>

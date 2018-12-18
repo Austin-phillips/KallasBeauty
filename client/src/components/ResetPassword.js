@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import { Header, Form, Button, Segment, Card } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { registerUser } from '../actions/auth';
+import { passwordReset } from '../actions/auth';
 import { setFlash } from '../actions/flash';
 import Wood from '../images/wood.jpg';
 
-class Register extends Component {
-  state = { email: '', password: '', passwordConfirmation: '' };
+class ResetPassword extends Component {
+  state = { password: '', passwordConfirmation: '' , id: this.props.match.params.id};
 
   handleSubmit = event => {
     event.preventDefault();
-    const { email, password, passwordConfirmation } = this.state;
+    const { id, password, passwordConfirmation } = this.state;
     const { dispatch, history } = this.props;
     if (password === passwordConfirmation) {
-      dispatch(registerUser(email, password, passwordConfirmation, history));
+      dispatch(passwordReset( password, passwordConfirmation, id, history));
     } else dispatch(setFlash('Passwords do not match!, please try again', 'red'));
   }
 
@@ -33,19 +33,9 @@ class Register extends Component {
         <div style={styles.backgroundImage}>
           <div style={styles.cardPosition}>
             <Card centered raised style={styles.card}>
-            <Header style={styles.header} as='h1' textAlign='center'>Sign-Up</Header>
+              <Header style={styles.header} as='h1' textAlign='center'>Sign-Up</Header>
               <div style={styles.formPosition}>
                 <Form onSubmit={this.handleSubmit}>
-                  <Form.Field>
-                    <label htmlFor='email'>Email</label>
-                    <input
-                      id='email'
-                      placeholder='Email'
-                      required
-                      value={email}
-                      onChange={this.handleChange}
-                    />
-                  </Form.Field>
                   <Form.Field>
                     <label htmlFor='password'>Password</label>
                     <input
@@ -69,7 +59,7 @@ class Register extends Component {
                     />
                   </Form.Field>
                   <Segment basic textAlign='center'>
-                    <Button disabled={( password === passwordConfirmation ? false : true)} color='blue' type='submit'>Submit</Button>
+                    <Button disabled={(password === passwordConfirmation ? false : true)} color='blue' type='submit'>Submit</Button>
                   </Segment>
                 </Form>
               </div>
@@ -104,4 +94,4 @@ const styles = {
   }
 }
 
-export default connect()(Register);
+export default connect()(ResetPassword);

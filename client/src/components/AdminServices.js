@@ -33,7 +33,7 @@ class AdminServices extends Component {
             <Card.Content>
               <Card.Header>{service.name}</Card.Header>
               <Card.Meta> ${service.price}</Card.Meta>
-              <Card.Meta>Time: {service.time} min</Card.Meta>
+              <Card.Meta>Time: {service.time}</Card.Meta>
               <Card.Description>{service.description}</Card.Description>
               <Divider />
               <Button.Group>

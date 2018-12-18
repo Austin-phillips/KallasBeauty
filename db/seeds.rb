@@ -1,4 +1,4 @@
-    @time = [ 30, 60, 90, 120 ]
+    @time = [ '10 Min', '15 Min', '30 Min', '1 Hour', '1.5 Hours', '2 Hours', '2.5 Hours' ]
     @time_slots = [
       '10:00 AM',
       '10:30 AM',
@@ -32,7 +32,7 @@
       length: '120',
     )
 
-    1.times do 
+    10.times do 
       Service.create(
         name: Faker::Food.dish,
         price: Faker::Commerce.price,
