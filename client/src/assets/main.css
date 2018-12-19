@@ -1,0 +1,50 @@
+body {
+  background-color: rgb(241, 241, 241) !important;
+  display: block !important;
+  overflow: auto !important;
+}
+
+/* Class Styling */
+
+/* Home Page */
+.homeHeader {
+  width: 100%;
+  height: 50vh;
+  background-image: url("../assets/images/wood.jpg");
+  padding-top: 15em;
+}
+
+.homeLogo {
+  color: rgb(255, 255, 255) !important;
+  font-family: Georgia, 'Times New Roman', Times, serif !important;
+}
+
+.homeContent {
+  margin: 25px;
+}
+
+.homeMoreButton {
+  margin-top: 15px;
+}
+
+/* Login */
+
+.loginBody {
+  height: 80vh;
+}
+
+/* Service Page */
+
+.serviceCard {
+  margin-top: 25px;
+}
+
+/* Center Content */
+
+.wrapper {
+  text-align: center;
+}
+
+.centerContent {
+  display: inline-block;
+}

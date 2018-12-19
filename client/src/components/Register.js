@@ -3,7 +3,7 @@ import { Header, Form, Button, Segment, Card } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { registerUser } from '../actions/auth';
 import { setFlash } from '../actions/flash';
-import Wood from '../images/wood.jpg';
+import Wood from '../assets/images/wood.jpg';
 
 class Register extends Component {
   state = { email: '', password: '', passwordConfirmation: '' };

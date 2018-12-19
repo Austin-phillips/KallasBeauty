@@ -3,8 +3,7 @@ import { Header, Segment, Form, Button, Card, Divider } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { handleLogin } from '../actions/auth';
 import { Link, withRouter } from 'react-router-dom';
-import Wood from '../images/wood.jpg'
-
+import '../assets/main.css'
 
 class Login extends Component {
   state = { email: '', password: '' };
@@ -24,11 +23,12 @@ class Login extends Component {
   render() {
     const { email, password } = this.state;
     return (
-      <div style={styles.backgroundImage}>
-        <div style={styles.cardPosition}>
-          <Card centered raised style={styles.card}>
-            <Header style={styles.header} as='h1' textAlign='center'>Login</Header>
-            <div style={styles.formPosition}>
+        <div className='loginBody wrapper'>
+        <div className='centerContent'>
+          <Card centered raised>
+          <Segment basic>
+            <Header as='h1' textAlign='center'>Login</Header>
+            <div>
               <Form onSubmit={this.handleSubmit}>
                 <Form.Field >
                   <label htmlFor='email'>Email</label>
@@ -60,33 +60,12 @@ class Login extends Component {
             <Segment basic textAlign='center'>
               <Link to='register'>New User?</Link>
             </Segment>
+          </Segment>
           </Card>
         </div>
-      </div>
+        </div>
     );
   }
 }
 
-const styles = {
-  backgroundImage: {
-    width: '100%',
-    background: `url(${Wood}) no-repeat center center fixed`,
-    backgroundSize: 'cover',
-    padding: '0px',
-    height: '150vh'
-  },
-  formPosition: {
-    margin: '50px'
-  },
-  cardPosition: {
-    position: 'fixed',
-    top: '18%',
-    left: '50%',
-    marginTop: '-50px',
-    marginLeft: '-150px'
-  },
-  header: {
-    marginTop: '25px'
-  }
-}
 export default withRouter(connect()(Login));

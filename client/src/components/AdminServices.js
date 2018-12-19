@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getServices, deleteService } from '../actions/service';
 import EditService from './EditService';
 import NewService from './NewService';
-import Wood from '../images/wood.jpg';
+import Wood from '../assets/images/wood.jpg';
 
 class AdminServices extends Component {
   state = { editing: false }

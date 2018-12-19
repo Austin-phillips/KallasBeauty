@@ -3,6 +3,7 @@ import { Menu, Segment } from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleLogout } from '../actions/auth';
+import '../assets/main.css';
 
 class NavBar extends Component {
 
@@ -31,7 +32,7 @@ class NavBar extends Component {
   render() {
     const { children, user } = this.props;
     return (
-      <div>
+      <div className='NavBar'>
         <Menu pointing secondary>
           <Link to='/'>
             <Menu.Item name='home' />

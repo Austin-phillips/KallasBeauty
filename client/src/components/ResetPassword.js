@@ -3,7 +3,7 @@ import { Header, Form, Button, Segment, Card } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { passwordReset } from '../actions/auth';
 import { setFlash } from '../actions/flash';
-import Wood from '../images/wood.jpg';
+import Wood from '../assets/images/wood.jpg';
 
 class ResetPassword extends Component {
   state = { password: '', passwordConfirmation: '' , id: this.props.match.params.id};

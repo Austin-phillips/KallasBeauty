@@ -3,6 +3,7 @@ import { Segment, Table, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { getAppointments } from '../actions/appointment';
 import { Link, withRouter } from 'react-router-dom';
+import moment from 'moment';
 
 class Appointments extends Component {
 
@@ -23,7 +24,7 @@ class Appointments extends Component {
         return(
           <Table.Row key={app.id}>
             <Table.Cell>{app.first} {app.last}</Table.Cell>
-            <Table.Cell>{app.date}</Table.Cell>
+            <Table.Cell>{moment(app.date).format('MMM Do, YYYY')}</Table.Cell>
             <Table.Cell>{app.time}</Table.Cell>
             <Table.Cell>{app.service}</Table.Cell>
           </Table.Row>
@@ -35,7 +36,7 @@ class Appointments extends Component {
 
   render() {
     return (
-      <Segment basic textAlign='center' style={{ height: '1000px'}}>
+      <Segment basic textAlign='center' style={{ height: '100vh'}}>
         <Link to='services'>
           <Button 
             floated='left'

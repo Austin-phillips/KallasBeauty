@@ -1,45 +1,85 @@
 import React, { Component } from 'react';
-import { Header } from 'semantic-ui-react';
-import Wood from '../images/wood.jpg';
+import { Header, Grid, Segment, Image, Button } from 'semantic-ui-react';
+import '../assets/main.css'
+import { Link, withRouter } from 'react-router-dom';
 
 class Home extends Component {
 
   render() {
     return (
-      <div style={styles.backgroundImage}>
-        <div style={styles.header}>
-          <Header as='h1' textAlign='center'>Bliss Beauty</Header>
+      <div>
+        <div className='homeHeader'>
+          <Header className='homeLogo' as='h1' textAlign='center'>Blissful Beauty</Header>
         </div>
-        <div style={styles.about}>
-          <Header as='h1' textAlign='center'>About Me</Header>
+        <div className='homeContent'>
+        {/* Mission Statement */}
+          <Grid stackable columns='equal'>
+            <Grid.Column>
+              <Segment className='wrapper'>
+                <div className='centerContent'>
+                  <Header as='h1'>Mission Statement</Header>
+                  <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+                </div>
+              </Segment>
+            </Grid.Column>
+          </Grid>
+        {/* Jaiden Info */}
+          <Header as='h2' textAlign='center'>About Jaiden</Header>
+          <Grid stackable columns='equal'>
+            <Grid.Column width={6}>
+              <Segment className='wrapper'>
+                <div className='centerContent'>
+                  <Header as='h1'>Image</Header>
+                  <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+                </div>
+              </Segment>
+            </Grid.Column>
+            <Grid.Column width={10}>
+              <Segment className='wrapper'>
+                <div className='centerContent'>
+                  <Header as='h1'>Info</Header>
+                  <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+                </div>
+              </Segment>
+            </Grid.Column>
+          </Grid>
+          {/* Service Examples */}
+          <Header as='h2' textAlign='center'>Examples of Work</Header>
+          <Grid stackable columns={3}>
+            <Grid.Column>
+              <Segment className='wrapper'>
+                <div className='centerContent'>
+                  <Header as='h1'>Image</Header>
+                  <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+                </div>
+              </Segment>
+            </Grid.Column>
+            <Grid.Column>
+              <Segment className='wrapper'>
+                <div className='centerContent'>
+                  <Header as='h1'>Image</Header>
+                  <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+                </div>
+              </Segment>
+            </Grid.Column>
+            <Grid.Column>
+              <Segment className='wrapper'>
+                <div className='centerContent'>
+                  <Header as='h1'>Image</Header>
+                  <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+                </div>
+              </Segment>
+            </Grid.Column>
+          </Grid>
+          <div className='wrapper'>
+            <div className='centerContent homeMoreButton'>
+              <Link to='gallery'><Button color='green'>View More Images</Button></Link>
+            </div>
+          </div>
         </div>
       </div>
     );
   }
 }
 
-const styles = {
-  backgroundImage: {
-    width: '100%',
-    background: `url(${Wood}) no-repeat center center fixed`,
-    backgroundSize: 'cover',
-    padding: '0px',
-    height: '100vh'
-  },
-  header: {
-    height: '200px',
-    width: '100%',
-    padding: '100px',
-  },
-  about: {
-    marginTop: '200px',
-    height: '100px',
-    width: '100%',
-    padding: '100px',
-    background: 'white',
-    color: 'black',
-    position: 'relative',
-  }
-}
-
-export default Home;
+export default withRouter(Home);

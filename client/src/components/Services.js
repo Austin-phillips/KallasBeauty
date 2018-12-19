@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { getServices } from '../actions/service';
 import AdminServices from './AdminServices';
-import Wood from '../images/wood.jpg';
 import AppointmentForm from './AppointmentForm';
+import '../assets/main.css'
 
 class Services extends Component {
 
@@ -21,18 +21,20 @@ class Services extends Component {
           key={service.id}
           computer={12}
           tablet={12}
-          phone={12}
+          phone={16}
         >
-          <Card centered raised fluid style={styles.box} >
-            <Card.Content>
-              <Card.Header>{service.name}</Card.Header>
-              <Card.Meta> ${service.price}</Card.Meta>
-              <Card.Meta>Duration of Service: {service.time}</Card.Meta>
-              <Card.Description>{service.description}</Card.Description>
-              <Divider section />
-              {this.props.user.id ? <AppointmentForm service={service} /> : <Link to='login'><Button color='blue'>Book Now</Button></Link>}
-            </Card.Content>
-          </Card>
+          <div className='serviceCard'>
+            <Card centered raised fluid>
+              <Card.Content>
+                <Card.Header>{service.name}</Card.Header>
+                <Card.Meta> ${service.price}</Card.Meta>
+                <Card.Meta>Duration of Service: {service.time}</Card.Meta>
+                <Card.Description>{service.description}</Card.Description>
+                <Divider section />
+                {this.props.user.id ? <AppointmentForm service={service} /> : <Link to='login'><Button color='blue'>Book Now</Button></Link>}
+              </Card.Content>
+            </Card>
+          </div>
         </Grid.Column>
       )
     })
@@ -45,11 +47,11 @@ class Services extends Component {
     );
     else 
     return (
-      <div style={styles.background}>
+      <div>
         <Segment basic textAlign='center'>
-          <Header as='h1' textAlign='center' style={styles.header}>Services</Header>
+          <Header as='h1' textAlign='center'>Services</Header>
           <Divider section />
-          <Grid columns={12}>
+          <Grid columns={16}>
             <Grid.Row centered>
               {this.displayServices()}
             </Grid.Row>
@@ -62,19 +64,6 @@ class Services extends Component {
 
 const mapStateToProps = (state) => {
   return { services: state.services, user: state.user }
-}
-
-const styles = {
-  box: {
-    margin: '4px',
-  },
-  background: {
-    width: '100%',
-    background: `url(${Wood}) no-repeat center center fixed`,
-    backgroundSize: 'cover',
-    padding: '25px',
-    height: '100vh',
-  }
 }
 
 export default withRouter(connect(mapStateToProps)(Services));

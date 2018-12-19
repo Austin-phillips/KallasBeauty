@@ -6,8 +6,7 @@ import { handleLogout } from '../actions/auth';
 import { isBrowser } from 'react-device-detect';
 import NavBarTop from './NavBarTop';
 import { connect } from 'react-redux';
-
-
+import '../assets/main.css';
 
 class NavBar extends Component {
   state = { visible: false }
@@ -77,6 +76,10 @@ class NavBar extends Component {
         <Divider section />
         <Link to='/services' onClick={() => this.toggleVisibility()}>
           <Menu.Item name='Services' />
+        </Link>
+        <Divider section />
+        <Link to='/appointments' onClick={() => this.toggleVisibility()}>
+          <Menu.Item name='Appointments' />
         </Link>
         <Divider section />
       </div>

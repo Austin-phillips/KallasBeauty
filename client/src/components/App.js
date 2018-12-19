@@ -17,6 +17,7 @@ import NewApp from './NewApp';
 import { Button } from 'semantic-ui-react';
 import Footer from './Footer';
 import ResetPassword from './ResetPassword';
+import '../assets/main.css'
 
 class App extends Component {
 

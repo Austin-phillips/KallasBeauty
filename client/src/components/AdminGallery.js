@@ -40,8 +40,8 @@ class AdminGallery extends Component {
 
   render() {
     return (
-      <Segment style={styles.background} basic textAlign='center'>
-        <Header style={styles.header} as='h1'>Gallery</Header>
+      <Segment basic textAlign='center'>
+        <Header as='h1'>Gallery</Header>
         <NewImage />
         <Divider section />
         <Grid>
@@ -53,16 +53,6 @@ class AdminGallery extends Component {
         </Grid>
       </Segment>
     );
-  }
-}
-
-const styles = {
-  background: {
-    width: '100%',
-    height: '200vh'
-  },
-  header: {
-    margin: '25px'
   }
 }
 

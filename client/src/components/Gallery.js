@@ -38,11 +38,10 @@ class Gallery extends Component {
       )
     else
       return (
-        <Segment basic style={styles.background}>
+        <Segment basic>
           <Header 
             as='h1' 
             textAlign='center'
-            style={styles.header}
           >
             Gallery
           </Header>
@@ -54,16 +53,6 @@ class Gallery extends Component {
           </Grid>
         </Segment>
       );
-  }
-}
-
-const styles = {
-  background: {
-    width: '100%',
-    height: '150vh',
-  },
-  header: {
-    margin: '25px'
   }
 }
 
