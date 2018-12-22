@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import NewSchedule from './NewSchedule';
 import { getLastDate } from '../actions/lastDate';
+import { isBrowser } from 'react-device-detect'
 
 class Schedule extends Component {
   state = { date: '' }
@@ -13,6 +14,10 @@ class Schedule extends Component {
   componentDidMount() {
     this.props.dispatch( getAllAppointments() )
     this.props.dispatch( getLastDate() )
+  }
+
+  allApps = () => {
+    this.setState({ date: ''})
   }
 
   handleChange = (e) => {
@@ -41,11 +46,12 @@ class Schedule extends Component {
               <Table.Cell>{app.time}</Table.Cell>
               <Table.Cell>{app.service}</Table.Cell>
               <Table.Cell>
-                <Link to={`/appointment/${app.id}`}>
-                  <Button color='blue'>
-                    View Client Info
-                  </Button>
-                </Link>
+              <Button.Group>
+                <Button color='blue'>
+                  View Client Info
+                </Button>
+                <Button color='green'>Re-Book Client</Button>
+              </Button.Group>
               </Table.Cell>
             </Table.Row>
           )
@@ -56,17 +62,14 @@ class Schedule extends Component {
 
   render() {
     const { date } = this.state;
-    const { lastDate } = this.props;
+    if( isBrowser )
     return (
       <Segment basic textAlign='center' style={{ height: '100vh' }}>
         Please Select a Date
         <Form>
           <Form.Input style={styles.date} type='date' value={date} onChange={this.handleChange} widths='50%' />
+          <Button color='blue' onClick={() => this.allApps()}>All Appointments</Button>
         </Form>
-        {this.props.lastDate === null ?
-          <Header floated='left'>You don't have the schedule setup yet...</Header> :
-          <Header floated='left'>The Schedule ends on: {moment(lastDate.date).format("MM/DD/YYYY")}</Header>}
-        <NewSchedule />
         <Table singleLine>
           <Table.Header>
             <Table.Row>
@@ -74,7 +77,7 @@ class Schedule extends Component {
               <Table.HeaderCell>Date</Table.HeaderCell>
               <Table.HeaderCell>Time</Table.HeaderCell>
               <Table.HeaderCell>Service</Table.HeaderCell>
-              <Table.HeaderCell></Table.HeaderCell>
+              <Table.HeaderCell>Actions</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>
@@ -82,7 +85,21 @@ class Schedule extends Component {
           </Table.Body>
         </Table>
       </Segment>
-    );
+    ); else 
+      return( 
+        <Segment basic textAlign='center' style={{ height: '100vh' }}>
+          Please Select a Date
+          <Form>
+            <Form.Input style={styles.date} type='date' value={date} onChange={this.handleChange} widths='50%' />
+            <Button color='blue' onClick={() => this.allApps()}>All Appointments</Button>
+          </Form>
+          <Table singleLine>
+            <Table.Body>
+              {this.showAppointments()}
+            </Table.Body>
+          </Table>
+        </Segment>
+      )
   }
 }
 
@@ -93,7 +110,7 @@ const styles = {
 }
 
 const mapStateToProps = (state) => {
-  return { allApps: state.allApps, lastDate: state.lastDate }
+  return { allApps: state.allApps }
 }
 
 export default connect(mapStateToProps)(Schedule);

@@ -31,6 +31,7 @@ class NavBar extends Component {
 
   render() {
     const { children, user } = this.props;
+    if (user.admin === true)
     return (
       <div className='NavBar'>
         <Menu pointing secondary>
@@ -43,14 +44,32 @@ class NavBar extends Component {
           <Link to='/services'>
             <Menu.Item name='Services' />
           </Link>
-          <Link to='/appointments'>
-            <Menu.Item name='Appointments' />
+          <Link to='/schedule'>
+            <Menu.Item name='schedule' />
           </Link>
           { this.rightNavs() }
         </Menu>
           {children}
       </div>
-    );
+    ) 
+    return(
+      <div>        <Menu pointing secondary>
+        <Link to='/'>
+          <Menu.Item name='home' />
+        </Link>
+        <Link to='/gallery'>
+          <Menu.Item name='Gallery' />
+        </Link>
+        <Link to='/services'>
+          <Menu.Item name='Services' />
+        </Link>
+        <Link to='/appointments'>
+          <Menu.Item name='Appointments' />
+        </Link>
+        {this.rightNavs()}
+      </Menu>
+        {children}</div>
+    )
   }
 }
 
