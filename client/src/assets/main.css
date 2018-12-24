@@ -27,6 +27,33 @@ body {
   margin-top: 15px;
 }
 
+.homeAboutMe {
+  padding-top: 15vh;
+  font-size: 18px;
+  font-family: 'Courier New', Courier, monospace
+}
+
+.homeAboutMeMobile {
+  padding-top: 1vh;
+  font-size: 18px;
+  font-family: 'Courier New', Courier, monospace
+}
+
+.homeImageRadius {
+  border-radius: 30px;
+}
+
+.homeMission {
+  padding-left: 200px;
+  padding-right: 200px;
+  font-size: 18px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+
+.homeWork {
+  font-family: 'Courier New', Courier, monospace;
+}
 /* Login */
 
 .loginBody {
